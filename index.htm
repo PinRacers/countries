@@ -1,3289 +1,584 @@
 ﻿<!DOCTYPE html>
-<html lang="sv" dir="ltr">
-<head>
-  <meta charset="UTF-8">
-  <!--
-      Title......: Ove's Web
-      Url........: https://pinracers.github.io/countries/
-      Author.....: Ove Dexlin
-      E-mail.....: ovedexlin@hotmail.com
-  -->
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="keywords" content="travel useless information private homepage">
-  <meta name="description" content="Ove Dexlins WEB-Site">
-  <meta name="author" content="Ove Dexlin">
-  <meta name="ROBOTS" content="ALL">
-  <title>The Pin Race</title>
 
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-  <link rel="stylesheet" href="Css/competitionStyle.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<html lang="sv">
+    <head>
+        <meta charset="utf-8" />
+    <!--
+        Title......: Ove's Web
+        Url........: https://pinracers.github.io/countries/
+        Author.....: Ove Dexlin
+        E-mail.....: ovedexlin@hotmail.com
+https://sheets.googleapis.com/v4/spreadsheets/1u3A-e4dxh9KA3POdSCROGdq0RHkzgWHWLudxmcEEfWM/values/A:B?key=AIzaSyB-FAQE07lFU8zSBtUr_y0NzchmRTsjzws
+    -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="keywords" content="travel useless information private homepage">
+        <meta name="description" content="Ove Dexlins WEB-Site">
+        <meta name="author" content="Ove Dexlin">
+        <meta name="ROBOTS" content="ALL">
+        <title>The Pin Race</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <link rel="stylesheet" href="Css/competitionStyle.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        <script src="Js/toggle.js"></script></script>
+        
+    </head>
+    <body">
 
-  <script>
-      function toggleByClass(className) {
-          $("." + className).toggle(400);
-          if (className == 'UN') {
-              $(".TCC").hide(400);
-          }
-          else {
-              $(".UN").hide(400);
-          }
-      }
-  </script>
+<script>
+    var baseUrl = 'https://sheets.googleapis.com/v4/spreadsheets';
+    var sheetId = '/1u3A-e4dxh9KA3POdSCROGdq0RHkzgWHWLudxmcEEfWM';
+    var key = '?key=AIzaSyB-FAQE07lFU8zSBtUr_y0NzchmRTsjzws';
+    var ldTccSheetRange = '/values/LdTcc!A:B';
+    var ldTccRequestURL = baseUrl + sheetId + ldTccSheetRange + key;
+    var ldTccCount = 0;
 
-</head>
+    var ldUnSheetRange = '/values/LdUn!A:C';
+    var ldUnRequestURL = baseUrl + sheetId + ldUnSheetRange + key;
+    var ldUnCount = 0;
 
-<body>
-  <div class="container">
-    <h1 class="text-center">The Pin Race</h1>
-    <ul class="nav nav-tabs">
-      <li class="active"><a data-toggle="tab" href="#total">Total</a></li>
-      <li><a data-toggle="tab" href="#lasse">Lasse</a></li>
-      <li><a data-toggle="tab" href="#crillo">Crillo</a></li>
-      <li><a data-toggle="tab" href="#ove">Ove</a></li>
-    </ul>
+    var ceTccSheetRange = '/values/CeTcc!A:B';
+    var ceTccRequestURL = baseUrl + sheetId + ceTccSheetRange + key;
+    var ceTccCount = 0;
 
-    <div class="tab-content">
-      <br />
-      <br />
+    var ceUnSheetRange = '/values/CeUn!A:C';
+    var ceUnRequestURL = baseUrl + sheetId + ceUnSheetRange + key;
+    var ceUnCount = 0;
 
-      <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="3500">
-        <!-- Wrapper for slides -->
-        <div class="carousel-inner" role="listbox">
-          <div class="item active">
-            <img src="Images/1300x450_3.jpg" alt="Travel">
-          </div>
-         <div class="item">
-            <img src="Images/1300x450_2.jpg" alt="Travel">
-         </div>
-         <div class="item">
-            <img src="Images/1300x450_1.jpg" alt="Travel">
-         </div>
-         <div class="item">
-            <img src="Images/1300x450_4.jpg" alt="Travel">
-         </div>
-       </div>
-      </div>
+    var odTccSheetRange = '/values/OdTcc!A:B';
+    var odTccRequestURL = baseUrl + sheetId + odTccSheetRange + key;
+    var odTccCount = 0;
 
-      <br />
+    var odUnSheetRange = '/values/OdUn!A:C';
+    var odUnRequestURL = baseUrl + sheetId + odUnSheetRange + key;
+    var odUnCount = 0;
 
-      <div id="total" class="tab-pane fade in active">
-        <h3>Summary</h3>
-        <table class="table table-bordered table-striped">
-          <thead>
-            <tr>
-              <th>Class</th>
-              <th>Specification</th>
-              <th>Current Score</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Visited TCC countries and territories</td>
-              <td>Total number: 325 according to <a href="http://travelerscenturyclub.org/" title="Click here to see the rules" target="top">rules</a></td>
-              <td>Lasse 148, Crillo 127, Ove 123</td>
-            </tr>
-            <tr>
-              <td>Visited UN countries</td>
-              <td>Number of member states and Vatican City and Taiwan: 195</td>
-              <td>Lasse 99, Crillo 97, Ove 93</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+    var ldTccRequest = new XMLHttpRequest();
+    var ldUnRequest = new XMLHttpRequest();
+    var ceTccRequest = new XMLHttpRequest();
+    var ceUnRequest = new XMLHttpRequest();
+    var odTccRequest = new XMLHttpRequest();
+    var odUnRequest = new XMLHttpRequest();
 
-      <div id="lasse" class="tab-pane fade">
-        <br />
-        <br />
-        <button type="button" class="btn btn-info" onclick="toggleByClass('TCC');">TCC</button>
-        <button type="button" class="btn btn-info" onclick="toggleByClass('UN');">UN</button>
-        <br />
-        <br />
+    ldTccRequest.addEventListener("load", ldTccTransferComplete);
+    ldTccRequest.open('GET', ldTccRequestURL);
+    ldTccRequest.responseType = 'text';
+    ldTccRequest.send();
+
+    function ldTccTransferComplete(evt) {
+        //console.log("LD TCC - The transfer is complete.");
+        var ldTccCountriesText = ldTccRequest.response;
+        var ldTccCountries = JSON.parse(ldTccCountriesText);
+        populateLdTcc(ldTccCountries);
+
+        ldUnRequest.addEventListener("load", ldUnTransferComplete);
+        ldUnRequest.open('GET', ldUnRequestURL);
+        ldUnRequest.responseType = 'text';
+        ldUnRequest.send();
+
+        function ldUnTransferComplete(evt) {
+            //console.log("LD UN - The transfer is complete.");
+            var ldUnCountriesText = ldUnRequest.response;
+            var ldUnCountries = JSON.parse(ldUnCountriesText);
+            populateLdUn(ldUnCountries);
+
+            ceTccRequest.addEventListener("load", ceTccTransferComplete);
+            ceTccRequest.open('GET', ceTccRequestURL);
+            ceTccRequest.responseType = 'text';
+            ceTccRequest.send();
+
+            function ceTccTransferComplete(evt) {
+                //console.log("CE TCC - The transfer is complete.");
+                var ceTccCountriesText = ceTccRequest.response;
+                var ceTccCountries = JSON.parse(ceTccCountriesText);
+                populateCeTcc(ceTccCountries);
+
+                ceUnRequest.addEventListener("load", ceUnTransferComplete);
+                ceUnRequest.open('GET', ceUnRequestURL);
+                ceUnRequest.responseType = 'text';
+                ceUnRequest.send();
+
+                function ceUnTransferComplete(evt) {
+                    //console.log("CE UN - The transfer is complete.");
+                    var ceUnCountriesText = ceUnRequest.response;
+                    var ceUnCountries = JSON.parse(ceUnCountriesText);
+                    populateCeUn(ceUnCountries);
+
+                    odTccRequest.addEventListener("load", odTccTransferComplete);
+                    odTccRequest.open('GET', odTccRequestURL);
+                    odTccRequest.responseType = 'text';
+                    odTccRequest.send();
+
+                    function odTccTransferComplete(evt) {
+                        //console.log("OD TCC - The transfer is complete.");
+                        var odTccCountriesText = odTccRequest.response;
+                        var odTccCountries = JSON.parse(odTccCountriesText);
+                        populateOdTcc(odTccCountries);
+
+                        odUnRequest.addEventListener("load", odUnTransferComplete);
+                        odUnRequest.open('GET', odUnRequestURL);
+                        odUnRequest.responseType = 'text';
+                        odUnRequest.send();
+
+                        function odUnTransferComplete(evt) {
+                            //console.log("OD UN - The transfer is complete.");
+                            var odUnCountriesText = odUnRequest.response;
+                            var odUnCountries = JSON.parse(odUnCountriesText);
+                            populateOdUn(odUnCountries);
+                            populateTotalStandings();
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    // Lasse
+    function populateLdTcc(jsonObj) {
+        var ldTccCountries = jsonObj['values'];
+
+        ldTccCountries.sort(function(a, b) {
+            var countryA = a[0].toUpperCase();
+            var countryB = b[0].toUpperCase();
+            if (countryA < countryB) {
+            return -1;
+            }
+            if (countryA > countryB) {
+            return 1;
+            }
+            // names must be equal
+            return 0;
+        });
+
+        //console.log('ldTccCountries', ldTccCountries);
+        //console.log(JSON.stringify(ldTccCountries));
+        ldTccCount = ldTccCountries.length;
+
+        for (var i = 0; i < ldTccCountries.length; i++) {
+            var rowItem = document.createElement('tr');
+            var columnItem1 = document.createElement('td');
+            columnItem1.textContent = ldTccCountries[i][0];
+            rowItem.appendChild(columnItem1);
+            var columnItem2 = document.createElement('td');
+            columnItem2.textContent = ldTccCountries[i][1];
+            rowItem.appendChild(columnItem2);
+            document.getElementById("LdTcc").appendChild(rowItem);
+        }
+        var h4Element = document.createElement('h4');
+        var h4Text = "Lasse's " + ldTccCount.toString() + " visited TCC countries and territories out of 325";
+        h4Element.textContent = h4Text;
+        var childNode = document.getElementById("LdTccCount");
+        document.getElementById("LdTccMain").insertBefore(h4Element, childNode);
+    }
+
+    function populateLdUn(jsonObj) {
+        var ldUnCountries = jsonObj['values'];
+
+        ldUnCountries.sort(function(a, b) {
+            var countryA = a[0].toUpperCase();
+            var countryB = b[0].toUpperCase();
+            if (countryA < countryB) {
+            return -1;
+            }
+            if (countryA > countryB) {
+            return 1;
+            }
+            // names must be equal
+            return 0;
+        });
+
+        //console.log('ldUnCountries', ldUnCountries);
+        ldUnCount = ldUnCountries.length;
+
+        for (var i = 0; i < ldUnCountries.length; i++) {
+            var rowItem = document.createElement('tr');
+            var columnItem1 = document.createElement('td');
+            columnItem1.textContent = ldUnCountries[i][0];
+            rowItem.appendChild(columnItem1);
+            var columnItem2 = document.createElement('td');
+            columnItem2.textContent = ldUnCountries[i][1];
+            rowItem.appendChild(columnItem2);
+            var columnItem3 = document.createElement('td');
+            var columnItem3Img = document.createElement('img');
+            columnItem3Img.src = "Flags/" + ldUnCountries[i][2];
+            columnItem3Img.setAttribute("class", "flag");
+            columnItem3.appendChild(columnItem3Img);
+            rowItem.appendChild(columnItem3);
+            document.getElementById("LdUn").appendChild(rowItem);
+        }
+        var h4Element = document.createElement('h4');
+        var h4Text = "Lasse's " + ldUnCount.toString() + " out of 195 visited UN countries including Vatican City and Taiwan R.O.C.";
+        h4Element.textContent = h4Text;
+        var childNode = document.getElementById("LdUnCount");
+        document.getElementById("LdUnMain").insertBefore(h4Element, childNode);
+    }
+
+    //Crillo
+    function populateCeTcc(jsonObj) {
+        var ceTccCountries = jsonObj['values'];
+
+        ceTccCountries.sort(function(a, b) {
+            var countryA = a[0].toUpperCase();
+            var countryB = b[0].toUpperCase();
+            if (countryA < countryB) {
+            return -1;
+            }
+            if (countryA > countryB) {
+            return 1;
+            }
+            // names must be equal
+            return 0;
+        });
+
+        //console.log('ceTccCountries', ceTccCountries);
+        ceTccCount = ceTccCountries.length;
+
+        for (var i = 0; i < ceTccCountries.length; i++) {
+            var rowItem = document.createElement('tr');
+            var columnItem1 = document.createElement('td');
+            columnItem1.textContent = ceTccCountries[i][0];
+            rowItem.appendChild(columnItem1);
+            var columnItem2 = document.createElement('td');
+            columnItem2.textContent = ceTccCountries[i][1];
+            rowItem.appendChild(columnItem2);
+            document.getElementById("CeTcc").appendChild(rowItem);
+        }
+        var h4Element = document.createElement('h4');
+        var h4Text = "Crillo's " + ceTccCount.toString() + " visited TCC countries and territories out of 325";
+        h4Element.textContent = h4Text;
+        var childNode = document.getElementById("CeTccCount");
+        document.getElementById("CeTccMain").insertBefore(h4Element, childNode);
+    }
+
+    function populateCeUn(jsonObj) {
+        var ceUnCountries = jsonObj['values'];
+
+        ceUnCountries.sort(function(a, b) {
+            var countryA = a[0].toUpperCase();
+            var countryB = b[0].toUpperCase();
+            if (countryA < countryB) {
+            return -1;
+            }
+            if (countryA > countryB) {
+            return 1;
+            }
+            // names must be equal
+            return 0;
+        });
+
+        //console.log('ceUnCountries', ceUnCountries);
+        ceUnCount = ceUnCountries.length;
+
+        for (var i = 0; i < ceUnCountries.length; i++) {
+            var rowItem = document.createElement('tr');
+            var columnItem1 = document.createElement('td');
+            columnItem1.textContent = ceUnCountries[i][0];
+            rowItem.appendChild(columnItem1);
+            var columnItem2 = document.createElement('td');
+            columnItem2.textContent = ceUnCountries[i][1];
+            rowItem.appendChild(columnItem2);
+            var columnItem3 = document.createElement('td');
+            var columnItem3Img = document.createElement('img');
+            columnItem3Img.src = "Flags/" + ceUnCountries[i][2];
+            columnItem3Img.setAttribute("class", "flag");
+            columnItem3.appendChild(columnItem3Img);
+            rowItem.appendChild(columnItem3);
+            document.getElementById("CeUn").appendChild(rowItem);
+        }
+        var h4Element = document.createElement('h4');
+        var h4Text = "Crillo's " + ceUnCount.toString() + " out of 195 visited UN countries including Vatican City and Taiwan R.O.C.";
+        h4Element.textContent = h4Text;
+        var childNode = document.getElementById("CeUnCount");
+        document.getElementById("CeUnMain").insertBefore(h4Element, childNode);
+    }
+
+    //Ove
+    function populateOdTcc(jsonObj) {
+        var odTccCountries = jsonObj['values'];
+
+        odTccCountries.sort(function(a, b) {
+            var countryA = a[0].toUpperCase();
+            var countryB = b[0].toUpperCase();
+            if (countryA < countryB) {
+            return -1;
+            }
+            if (countryA > countryB) {
+            return 1;
+            }
+            // names must be equal
+            return 0;
+        });
+
+        //console.log('odTccCountries', odTccCountries);
+        odTccCount = odTccCountries.length;
+
+        for (var i = 0; i < odTccCountries.length; i++) {
+            var rowItem = document.createElement('tr');
+            var columnItem1 = document.createElement('td');
+            columnItem1.textContent = odTccCountries[i][0];
+            rowItem.appendChild(columnItem1);
+            var columnItem2 = document.createElement('td');
+            columnItem2.textContent = odTccCountries[i][1];
+            rowItem.appendChild(columnItem2);
+            document.getElementById("OdTcc").appendChild(rowItem);
+        }
+        var h4Element = document.createElement('h4');
+        var h4Text = "Ove's " + odTccCount.toString() + " visited TCC countries and territories out of 325";
+        h4Element.textContent = h4Text;
+        var childNode = document.getElementById("OdTccCount");
+        document.getElementById("OdTccMain").insertBefore(h4Element, childNode);
+    }
+
+    function populateOdUn(jsonObj) {
+        var odUnCountries = jsonObj['values'];
+
+        odUnCountries.sort(function(a, b) {
+            var countryA = a[0].toUpperCase();
+            var countryB = b[0].toUpperCase();
+            if (countryA < countryB) {
+            return -1;
+            }
+            if (countryA > countryB) {
+            return 1;
+            }
+            // names must be equal
+            return 0;
+        });
+
+        //console.log('odUnCountries', odUnCountries);
+        odUnCount = odUnCountries.length;
+
+        for (var i = 0; i < odUnCountries.length; i++) {
+            var rowItem = document.createElement('tr');
+            var columnItem1 = document.createElement('td');
+            columnItem1.textContent = odUnCountries[i][0];
+            rowItem.appendChild(columnItem1);
+            var columnItem2 = document.createElement('td');
+            columnItem2.textContent = odUnCountries[i][1];
+            rowItem.appendChild(columnItem2);
+            var columnItem3 = document.createElement('td');
+            var columnItem3Img = document.createElement('img');
+            columnItem3Img.src = "Flags/" + odUnCountries[i][2];
+            columnItem3Img.setAttribute("class", "flag");
+            columnItem3.appendChild(columnItem3Img);
+            rowItem.appendChild(columnItem3);
+            document.getElementById("OdUn").appendChild(rowItem);
+        }
+        var h4Element = document.createElement('h4');
+        var h4Text = "Ove's " + odUnCount.toString() + " out of 195 visited UN countries including Vatican City and Taiwan R.O.C.";
+        h4Element.textContent = h4Text;
+        var childNode = document.getElementById("OdUnCount");
+        document.getElementById("OdUnMain").insertBefore(h4Element, childNode);
+    }
+
+    function populateTotalStandings() {
+        var tccColItem = document.createElement('td');
+        var tccContent = "Lasse " + ldTccCount.toString() + ", Crillo " + ceTccCount.toString() + ", Ove " + odTccCount.toString();
+        tccColItem.textContent = tccContent;
+        document.getElementById("TccStandings").appendChild(tccColItem);
+
+        var unColItem = document.createElement('td');
+        var unContent = "Lasse " + ldUnCount.toString() + ", Crillo " + ceUnCount.toString() + ", Ove " + odUnCount.toString();
+        unColItem.textContent = unContent;
+        document.getElementById("UnStandings").appendChild(unColItem);
+    }
+
+</script>
+
+        <div class="container">
+            <h1 class="text-center">The Pin Race</h1>
+            <ul class="nav nav-tabs">
+                <li class="active"><a data-toggle="tab" href="#total">Total</a></li>
+                <li><a data-toggle="tab" href="#lasse">Lasse</a></li>
+                <li><a data-toggle="tab" href="#crillo">Crillo</a></li>
+                <li><a data-toggle="tab" href="#ove">Ove</a></li>
+            </ul>
+
+            <div class="tab-content">
+                <br />
+                <br />
+
+                <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="3500">
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner" role="listbox">
+                        <div class="item active">
+                            <img src="Images/1300x450_3.jpg" alt="Travel">
+                        </div>
+                        <div class="item">
+                            <img src="Images/1300x450_2.jpg" alt="Travel">
+                        </div>
+                        <div class="item">
+                            <img src="Images/1300x450_1.jpg" alt="Travel">
+                        </div>
+                        <div class="item">
+                            <img src="Images/1300x450_4.jpg" alt="Travel">
+                        </div>
+                    </div>
+                </div>
+
+                <br />
+
+                <div id="total" class="tab-pane fade in active">
+                    <h3>Summary</h3>
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>Class</th>
+                                <th>Specification</th>
+                                <th>Current Score</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr id="TccStandings">
+                                <td>Visited TCC countries and territories</td>
+                                <td>Total number: 325 according to <a href="http://travelerscenturyclub.org/" title="Click here to see the rules" target="top">rules</a></td>
+                            </tr>
+                            <tr id="UnStandings">
+                                <td>Visited UN countries</td>
+                                <td>Number of member states and Vatican City and Taiwan: 195</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div id="lasse" class="tab-pane fade">
+                    <br />
+                    <br />
+                    <button type="button" class="btn btn-info" onclick="toggleByClass('TCC');">TCC</button>
+                    <button type="button" class="btn btn-info" onclick="toggleByClass('UN');">UN</button>
+                    <br />
+                    <br />
 
 <!-- =============================================================================================
     Here starts Lasse's visited TCC-countries 
 ================================================================================================ -->
-        <div class="TCC" style="display: none;">
-          <h4>Lasse's 148 visited TCC countries and territories out of 325</h4>
-          <table class="table table-bordered table-striped">
-            <thead>
-              <tr>
-                <th>TCC Country/Territory</th>
-                <th>First visited</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Abu Dhabi U.A.E.</td>
-                <td>2005</td>
-              </tr>
-              <tr>
-                <td>Ajman U.A.E.</td>
-                <td>2005</td>
-              </tr>
-              <tr>
-                <td>Aland Islands</td>
-                <td>1982</td>
-              </tr>
-              <tr>
-                <td>Alaska</td>
-                <td>2014</td>
-              </tr>
-              <tr>
-                <td>Albania</td>
-                <td>2003</td>
-              </tr>
-              <tr>
-                <td>Algeria</td>
-                <td>2014</td>
-              </tr>
-              <tr>
-                <td>Andorra</td>
-                <td>2005</td>
-              </tr>
-              <tr>
-                <td>Armenia</td>
-                <td>2006</td>
-              </tr>
-              <tr>
-                <td>Australia</td>
-                <td>2000</td>
-              </tr>
-              <tr>
-                <td>Austria</td>
-                <td>1982</td>
-              </tr>
-              <tr>
-                <td>Azerbaijan</td>
-                <td>2011</td>
-              </tr>
-              <tr>
-                <td>Azores Islands</td>
-                <td>2017</td>
-              </tr>
-              <tr>
-                <td>Bahamas</td>
-                <td>2004</td>
-              </tr>
-              <tr>
-                <td>Balearic Islands</td>
-                <td>&nbsp;</td>
-              </tr>
-              <tr>
-                <td>Belarus</td>
-                <td>1999</td>
-              </tr>
-              <tr>
-                <td>Belgium</td>
-                <td>1985</td>
-              </tr>
-              <tr>
-                <td>Belize</td>
-                <td>1989</td>
-              </tr>
-              <tr>
-                <td>Benin</td>
-                <td>2017</td>
-              </tr>
-              <tr>
-                <td>Bermuda</td>
-                <td>2016</td>
-              </tr>
-              <tr>
-                <td>Bosnia &amp; Herzegovina</td>
-                <td>1983</td>
-              </tr>
-              <tr>
-                <td>Botswana</td>
-                <td>2013</td>
-              </tr>
-              <tr>
-                <td>Brazil</td>
-                <td>2008</td>
-              </tr>
-              <tr>
-                <td>Bulgaria</td>
-                <td>1984</td>
-              </tr>
-              <tr>
-                <td>Canada</td>
-                <td>1987</td>
-              </tr>
-              <tr>
-                <td>Canary Islands</td>
-                <td>&nbsp;</td>
-              </tr>
-              <tr>
-                <td>Ceuta</td>
-                <td>2004</td>
-              </tr>
-              <tr>
-                <td>Chile</td>
-                <td>2008</td>
-              </tr>
-              <tr>
-                <td>China People's Rep</td>
-                <td>1993</td>
-              </tr>
-              <tr>
-                <td>Corsica</td>
-                <td>2012</td>
-              </tr>
-              <tr>
-                <td>Costa Rica</td>
-                <td>2015</td>
-              </tr>
-              <tr>
-                <td>Crete</td>
-                <td>2013</td>
-              </tr>
-              <tr>
-                <td>Croatia</td>
-                <td>1983</td>
-              </tr>
-              <tr>
-                <td>Cuba</td>
-                <td>1989</td>
-              </tr>
-              <tr>
-                <td>Cyprus, Rep</td>
-                <td>1982</td>
-              </tr>
-              <tr>
-                <td>Cyprus, Turkish Fed. State of</td>
-                <td>2016</td>
-              </tr>
-              <tr>
-                <td>Czech Fed Rep</td>
-                <td>1983</td>
-              </tr>
-              <tr>
-                <td>Denmark</td>
-                <td>&nbsp;</td>
-              </tr>
-              <tr>
-                <td>Dodecanese</td>
-                <td>1981</td>
-              </tr>
-              <tr>
-                <td>Dominican Republic</td>
-                <td>2017</td>
-              </tr>
-              <tr>
-                <td>Dubai U.A.E.</td>
-                <td>2005</td>
-              </tr>
-              <tr>
-                <td>Easter Island</td>
-                <td>2008</td>
-              </tr>
-              <tr>
-                <td>Egypt</td>
-                <td>&nbsp;</td>
-              </tr>
-              <tr>
-                <td>England</td>
-                <td>1977</td>
-              </tr>
-              <tr>
-                <td>Estonia</td>
-                <td>1992</td>
-              </tr>
-              <tr>
-                <td>Ethiopia</td>
-                <td>2010</td>
-              </tr>
-              <tr>
-                <td>Faroe Islands</td>
-                <td>2006</td>
-              </tr>
-              <tr>
-                <td>Finland</td>
-                <td>1978</td>
-              </tr>
-              <tr>
-                <td>France</td>
-                <td>1979</td>
-              </tr>
-              <tr>
-                <td>French Polynesia</td>
-                <td>2008</td>
-              </tr>
-              <tr>
-                <td>Fujeirah U.A.E.</td>
-                <td>2005</td>
-              </tr>
-              <tr>
-                <td>Georgia</td>
-                <td>2006</td>
-              </tr>
-              <tr>
-                <td>Germany</td>
-                <td>1974</td>
-              </tr>
-              <tr>
-                <td>Ghana</td>
-                <td>2017</td>
-              </tr>
-              <tr>
-                <td>Gibraltar</td>
-                <td>2004</td>
-              </tr>
-              <tr>
-                <td>Greece</td>
-                <td>1980</td>
-              </tr>
-              <tr>
-                <td>Greenland</td>
-                <td>2009</td>
-              </tr>
-              <tr>
-                <td>Guatemala</td>
-                <td>1989</td>
-              </tr>
-              <tr>
-                <td>Guernsey</td>
-                <td>2001</td>
-              </tr>
-              <tr>
-                <td>Hawaiian Islands</td>
-                <td>1987</td>
-              </tr>
-              <tr>
-                <td>Hong Kong</td>
-                <td>1993</td>
-              </tr>
-              <tr>
-                <td>Hungary</td>
-                <td>1983</td>
-              </tr>
-              <tr>
-                <td>Iceland</td>
-                <td>&nbsp;</td>
-              </tr>
-              <tr>
-                <td>India</td>
-                <td>&nbsp;</td>
-              </tr>
-              <tr>
-                <td>Ionian Islands</td>
-                <td>1982</td>
-              </tr>
-              <tr>
-                <td>Iran</td>
-                <td>2015</td>
-              </tr>
-              <tr>
-                <td>Ireland, Northern</td>
-                <td>1982</td>
-              </tr>
-              <tr>
-                <td>Ireland, Rep</td>
-                <td>1982</td>
-              </tr>
-              <tr>
-                <td>Isle of Man</td>
-                <td>1977</td>
-              </tr>
-              <tr>
-                <td>Israel</td>
-                <td>1982</td>
-              </tr>
-              <tr>
-                <td>Italy</td>
-                <td>1974</td>
-              </tr>
-              <tr>
-                <td>Ivory Coast</td>
-                <td>2017</td>
-              </tr>
-              <tr>
-                <td>Japan</td>
-                <td>2012</td>
-              </tr>
-              <tr>
-                <td>Jersey</td>
-                <td>2001</td>
-              </tr>
-              <tr>
-                <td>Jordan</td>
-                <td>2018</td>
-              </tr>
-              <tr>
-                <td>Kaliningrad</td>
-                <td>2002</td>
-              </tr>
-              <tr>
-                <td>Kazakhstan</td>
-                <td>2013</td>
-              </tr>
-              <tr>
-                <td>Kenya</td>
-                <td>1993</td>
-              </tr>
-              <tr>
-                <td>Korea, North (Democratic People's Republic of Korea)</td>
-                <td>2016</td>
-              </tr>
-              <tr>
-                <td>Kosovo</td>
-                <td>2008</td>
-              </tr>
-              <tr>
-                <td>Kuwait</td>
-                <td>2005</td>
-              </tr>
-              <tr>
-                <td>Kyrgyzstan</td>
-                <td>2013</td>
-              </tr>
-              <tr>
-                <td>Latvia</td>
-                <td>1992</td>
-              </tr>
-              <tr>
-                <td>Lebanon</td>
-                <td>2009</td>
-              </tr>
-              <tr>
-                <td>Liechtenstein</td>
-                <td>&nbsp;</td>
-              </tr>
-              <tr>
-                <td>Lithuania</td>
-                <td>1999</td>
-              </tr>
-              <tr>
-                <td>Luxembourg</td>
-                <td>1985</td>
-              </tr>
-              <tr>
-                <td>Macedonia</td>
-                <td>2015</td>
-              </tr>
-              <tr>
-                <td>Madeira</td>
-                <td>2018<td>
-              </tr>
-              <tr>
-                <td>Malaysia</td>
-                <td>&nbsp;</td>
-              </tr>
-              <tr>
-                <td>Malta</td>
-                <td>&nbsp;</td>
-              </tr>
-              <tr>
-                <td>Mexico</td>
-                <td>1989</td>
-              </tr>
-              <tr>
-                <td>Moldova</td>
-                <td>2005</td>
-              </tr>
-              <tr>
-                <td>Monaco</td>
-                <td>1979</td>
-              </tr>
-              <tr>
-                <td>Mongolia</td>
-                <td>2016</td>
-              </tr>
-              <tr>
-                <td>Montenegro</td>
-                <td>2005</td>
-              </tr>
-              <tr>
-                <td>Morocco</td>
-                <td>1981</td>
-              </tr>
-              <tr>
-                <td>Nakhichevan</td>
-                <td>2011</td>
-              </tr>
-              <tr>
-                <td>Namibia</td>
-                <td>2013</td>
-              </tr>
-              <tr>
-                <td>Netherlands</td>
-                <td>1979</td>
-              </tr>
-              <tr>
-                <td>New Zealand</td>
-                <td>2008</td>
-              </tr>
-              <tr>
-                <td>Nicaragua</td>
-                <td>2015</td>
-              </tr>
-              <tr>
-			    <td>Norway</td>
-                <td>&nbsp;</td>
-              </tr>
-              <tr>
-                <td>Oman</td>
-                <td>2005</td>
-              </tr>
-              <tr>
-                <td>Palestine</td>
-                <td>1982</td>
-              </tr>
-              <tr>
-                <td>Panama</td>
-                <td>2015</td>
-              </tr>
-              <tr>
-                <td>Poland</td>
-                <td>1984</td>
-              </tr>
-              <tr>
-                <td>Portugal</td>
-                <td>1985</td>
-              </tr>
-              <tr>
-                <td>Prince Edward Island</td>
-                <td>2011</td>
-              </tr>
-              <tr>
-                <td>Puerto Rico</td>
-                <td>2016</td>
-              </tr>
-              <tr>
-                <td>Republic of South Africa</td>
-                <td>2002</td>
-              </tr>
-              <tr>
-                <td>Ras Al Khamiah U.A.E.</td>
-                <td>2005</td>
-              </tr>
-              <tr>
-                <td>Romania</td>
-                <td>1984</td>
-              </tr>
-              <tr>
-                <td>Russia</td>
-                <td>1978</td>
-              </tr>
-              <tr>
-                <td>Sabah</td>
-                <td>&nbsp;</td>
-              </tr>
-              <tr>
-                <td>San Marino</td>
-                <td>&nbsp;</td>
-              </tr>
-              <tr>
-                <td>Sardinia</td>
-                <td>1991</td>
-              </tr>
-              <tr>
-                <td>Scotland</td>
-                <td>1982</td>
-              </tr>
-              <tr>
-                <td>Serbia</td>
-                <td>1983</td>
-              </tr>
-              <tr>
-                <td>Sharjah U.A.E.</td>
-                <td>2005</td>
-              </tr>
-              <tr>
-                <td>Sibiria</td>
-                <td>1985</td>
-              </tr>
-              <tr>
-                <td>Sicily</td>
-                <td>2007</td>
-              </tr>
-              <tr>
-                <td>Singapore</td>
-                <td>2000</td>
-              </tr>
-              <tr>
-                <td>Slovakia</td>
-                <td>1984</td>
-              </tr>
-              <tr>
-                <td>Slovenia</td>
-                <td>&nbsp;</td>
-              </tr>
-              <tr>
-                <td>South Korea</td>
-                <td>2008</td>
-              </tr>
-              <tr>
-                <td>Spain</td>
-                <td>1979</td>
-              </tr>
-              <tr>
-                <td>Spitsbergen</td>
-                <td>2007</td>
-              </tr>
-              <tr>
-                <td>Srpska</td>
-                <td>1983</td>
-              </tr>
-              <tr>
-                <td>St. Pierre & Miquelon</td>
-                <td>2011</td>
-              </tr>
-              <tr>
-                <td>Sweden</td>
-                <td>1962</td>
-              </tr>
-              <tr>
-                <td>Switzerland</td>
-                <td>1974</td>
-              </tr>
-              <tr>
-                <td>Taiwan R.O.C</td>
-                <td>1993</td>
-              </tr>
-              <tr>
-                <td>Thailand</td>
-                <td>2001</td>
-              </tr>
-              <tr>
-                <td>Togo</td>
-                <td>2017</td>
-              </tr>
-              <tr>
-                <td>Trans Dniester</td>
-                <td>2005</td>
-              </tr>
-              <tr>
-                <td>Turkey in Asia</td>
-                <td>1984</td>
-              </tr>
-              <tr>
-                <td>Turkey in Europe</td>
-                <td>1984</td>
-              </tr>
-              <tr>
-                <td>Turkmenistan</td>
-                <td>2015</td>
-              </tr>
-              <tr>
-                <td>United States</td>
-                <td>1987</td>
-              </tr>
-              <tr>
-                <td>Ukraine</td>
-                <td>2000</td>
-              </tr>
-              <tr>
-                <td>Umm Al Qaiwain U.A.E.</td>
-                <td>2005</td>
-              </tr>
-              <tr>
-                <td>Uzbekistan</td>
-                <td>2007</td>
-              </tr>
-              <tr>
-                <td>Vatican City</td>
-                <td>1980</td>
-              </tr>
-              <tr>
-                <td>Virgin Island, U.S.</td>
-                <td>2016</td>
-              </tr>
-              <tr>
-                <td>Virgin Island, Brittish</td>
-                <td>2016</td>
-              </tr>
-              <tr>
-                <td>Wales</td>
-                <td>1987</td>
-              </tr>
-              <tr>
-                <td>Zambia</td>
-                <td>2013</td>
-              </tr>
-              <tr>
-                <td>Zimbabwe</td>
-                <td>2013</td>
-              </tr>
+                    <div class="TCC" style="display: none;" id="LdTccMain">
+                        <table class="table table-bordered table-striped" id="LdTccCount">
+                            <thead>
+                                <tr>
+                                    <th>TCC Country/Territory</th>
+                                    <th>First visited</th>
+                                </tr>
+                            </thead>
+                            <tbody id="LdTcc">
 
-            </tbody>
-          </table>
-        </div>
-
+                            </tbody>
+                        </table>
+                    </div>
 <!-- =============================================================================================
     Here starts Lasse's visited UN-countries 
 ================================================================================================ -->
-        <div class="UN" style="display: none;">
-          <h4>Lasse's 99 out of 195 visited UN countries including Vatican City and Taiwan R.O.C.</h4>
-          <table class="table table-bordered table-striped">
-            <thead>
-              <tr>
-                <th>UN Country</th>
-                <th>First visited</th>
-                <th>&nbsp;</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Albania</td>
-                <td>2003</td>
-                <td><img src="Flags/alb.png"  class="flag" alt="Albania"/></td>
-              </tr>
-              <tr>
-                <td>Algeria</td>
-                <td>2014</td>
-                <td><img src="Flags/alg.png"  class="flag" alt="Algeria"/></td>
-              </tr>
-              <tr>
-                <td>Andorra</td>
-                <td>2005</td>
-                <td><img src="Flags/and.png"  class="flag" alt="Andorra"/></td>
-              </tr>
-              <tr>
-                <td>Armenia</td>
-                <td>2006</td>
-                <td><img src="Flags/arm.png"  class="flag" alt="Armenia"/></td>
-              </tr>
-              <tr>
-                <td>Australia</td>
-                <td>2000</td>
-                <td><img src="Flags/aus.png"  class="flag" alt="Australia"/></td>
-              </tr>
-              <tr>
-                <td>Austria</td>
-                <td>1982</td>
-                <td><img src="Flags/aut.png"  class="flag" alt="Austria"/></td>
-              </tr>
-              <tr>
-                <td>Azerbaijan</td>
-                <td>2011</td>
-                <td><img src="Flags/aze.png"  class="flag" alt="Azerbaijan"/></td>
-              </tr>
-              <tr>
-                <td>Bahamas</td>
-                <td>2004</td>
-                <td><img src="Flags/bah.png"  class="flag" alt="Bahamas"/></td>
-              </tr>
-              <tr>
-                <td>Belarus</td>
-                <td>1999</td>
-                <td><img src="Flags/blr.png"  class="flag" alt="Belarus"/></td>
-              </tr>
-              <tr>
-                <td>Belgium</td>
-                <td>1985</td>
-                <td><img src="Flags/bel.png"  class="flag" alt="Belgium"/></td>
-              </tr>
-              <tr>
-                <td>Belize</td>
-                <td>1989</td>
-                <td><img src="Flags/blz.png"  class="flag" alt="Belize"/></td>
-              </tr>
-              <tr>
-                <td>Benin</td>
-                <td>2017</td>
-                <td><img src="Flags/ben.png"  class="flag" alt="Benin"/></td>
-              </tr>
-              <tr>
-                <td>Bosnia &amp; Herzegovina</td>
-                <td>1983</td>
-                <td><img src="Flags/bih.png"  class="flag" alt="Bosnia and Herzegovina"/></td>
-              </tr>
-              <tr>
-                <td>Botswana</td>
-                <td>2013</td>
-                <td><img src="Flags/bot.png"  class="flag" alt="Botswana"/></td>
-              </tr>
-              <tr>
-                <td>Brazil</td>
-                <td>2008</td>
-                <td><img src="Flags/bra.png"  class="flag" alt="Brazil"/></td>
-              </tr>
-              <tr>
-                <td>Bulgaria</td>
-                <td>1984</td>
-                <td><img src="Flags/bul.png"  class="flag" alt="Bulgaria"/></td>
-              </tr>
-              <tr>
-                <td>Canada</td>
-                <td>1987</td>
-                <td><img src="Flags/can.png"  class="flag" alt="Canada"/></td>
-              </tr>
-              <tr>
-                <td>Chile</td>
-                <td>2008</td>
-                <td><img src="Flags/chi.png"  class="flag" alt="Chile"/></td>
-              </tr>
-              <tr>
-                <td>China</td>
-                <td>1993</td>
-                <td><img src="Flags/chn.png"  class="flag" alt="China"/></td>
-              </tr>
-              <tr>
-                <td>Costa Rica</td>
-                <td>2015</td>
-                <td><img src="Flags/crc.png"  class="flag" alt="Costa Rica"/></td>
-              </tr>
-              <tr>
-                <td>Côte D'Ivoire</td>
-                <td>2017</td>
-                <td><img src="Flags/civ.png"  class="flag" alt="Côte D'Ivoire"/></td>
-              </tr>
-              <tr>
-                <td>Croatia</td>
-                <td>1983</td>
-                <td><img src="Flags/cro.png"  class="flag" alt="Croatia"/></td>
-              </tr>
-              <tr>
-                <td>Cuba</td>
-                <td>1989</td>
-                <td><img src="Flags/cub.png"  class="flag" alt="Cuba"/></td>
-              </tr>
-              <tr>
-                <td>Cyprus</td>
-                <td>1982</td>
-                <td><img src="Flags/cyp.png"  class="flag" alt="Cyprus"/></td>
-              </tr>
-              <tr>
-                <td>Czech Republic</td>
-                <td>1983</td>
-                <td><img src="Flags/cze.png"  class="flag" alt="Czech Republic"/></td>
-              </tr>
-              <tr>
-                <td>Democratic People's Republic of Korea</td>
-                <td>2016</td>
-                <td><img src="Flags/prk.png"  class="flag" alt="Democratic People's Republic of Korea"/></td>
-              </tr>
-              <tr>
-                <td>Denmark</td>
-                <td>&nbsp;</td>
-                <td><img src="Flags/den.png"  class="flag" alt="Denmark"/></td>
-              </tr>
-              <tr>
-                <td>Dominican Republic</td>
-                <td>2017</td>
-                <td><img src="Flags/dom.png"  class="flag" alt="Dominican Republic"/></td>
-              </tr>
-              <tr>
-                <td>Egypt</td>
-                <td>&nbsp;</td>
-                <td><img src="Flags/egy.png"  class="flag" alt="Egypt"/></td>
-              </tr>
-              <tr>
-                <td>Estonia</td>
-                <td>1992</td>
-                <td><img src="Flags/est.png"  class="flag" alt="Estonia"/></td>
-              </tr>
-              <tr>
-                <td>Ethiopia</td>
-                <td>2010</td>
-                <td><img src="Flags/eth.png"  class="flag" alt="Ethiopia"/></td>
-              </tr>
-              <tr>
-                <td>Finland</td>
-                <td>1978</td>
-                <td><img src="Flags/fin.png"  class="flag" alt="Finland"/></td>
-              </tr>
-              <tr>
-                <td>France</td>
-                <td>1979</td>
-                <td><img src="Flags/fra.png"  class="flag" alt="France"/></td>
-              </tr>
-              <tr>
-                <td>Georgia</td>
-                <td>2006</td>
-                <td><img src="Flags/geo.png"  class="flag" alt="Georgia"/></td>
-              </tr>
-              <tr>
-                <td>Germany</td>
-                <td>1974</td>
-                <td><img src="Flags/ger.png"  class="flag" alt="Germany"/></td>
-              </tr>
-              <tr>
-                <td>Ghana</td>
-                <td>2017</td>
-                <td><img src="Flags/gha.png" class="flag" alt="Ghana"/></td>
-              </tr>
-              <tr>
-                <td>Greece</td>
-                <td>1980</td>
-                <td><img src="Flags/gre.png"  class="flag" alt="Greece"/></td>
-              </tr>
-              <tr>
-                <td>Guatemala</td>
-                <td>1989</td>
-                <td><img src="Flags/gua.png"  class="flag" alt="Guatemala"/></td>
-              </tr>
-              <tr>
-                <td>Hungary</td>
-                <td>1983</td>
-                <td><img src="Flags/hun.png"  class="flag" alt="Hungary"/></td>
-              </tr>
-              <tr>
-                <td>Iceland</td>
-                <td>&nbsp;</td>
-                <td><img src="Flags/isl.png"  class="flag" alt="Iceland"/></td>
-              </tr>
-              <tr>
-                <td>India</td>
-                <td>&nbsp;</td>
-                <td><img src="Flags/ind.png"  class="flag" alt="India"/></td>
-              </tr>
-              <tr>
-                <td>Iran (Islamic Republic of)</td>
-                <td>2015</td>
-                <td><img src="Flags/irn.png"  class="flag" alt="Iran"/></td>
-              </tr>
-              <tr>
-                <td>Ireland</td>
-                <td>1982</td>
-                <td><img src="Flags/irl.png"  class="flag" alt="Ireland"/></td>
-              </tr>
-              <tr>
-                <td>Israel</td>
-                <td>1982</td>
-                <td><img src="Flags/isr.png"  class="flag" alt="Israel"/></td>
-              </tr>
-              <tr>
-                <td>Italy</td>
-                <td>1974</td>
-                <td><img src="Flags/ita.png"  class="flag" alt="Italy"/></td>
-              </tr>
-              <tr>
-                <td>Japan</td>
-                <td>2012</td>
-                <td><img src="Flags/jpn.png"  class="flag" alt="Japan"/></td>
-              </tr>
-              <tr>
-                <td>Jordan</td>
-                <td>2018</td>
-                <td><img src="Flags/jor.png"  class="flag" alt="Jordan"/></td>
-              </tr>
-              <tr>
-                <td>Kazakhstan</td>
-                <td>2013</td>
-                <td><img src="Flags/kaz.png"  class="flag" alt="Kazakhstan"/></td>
-              </tr>
-              <tr>
-                <td>Kenya</td>
-                <td>1993</td>
-                <td><img src="Flags/ken.png"  class="flag" alt="Kenya"/></td>
-              </tr>
-              <tr>
-                <td>Kuwait</td>
-                <td>2005</td>
-                <td><img src="Flags/kuw.png"  class="flag" alt="Kuwait"/></td>
-              </tr>
-              <tr>
-                <td>Kyrgyzstan</td>
-                <td>2013</td>
-                <td><img src="Flags/kgz.png"  class="flag" alt="Kyrgyzstan"/></td>
-              </tr>
-              <tr>
-                <td>Latvia</td>
-                <td>1992</td>
-                <td><img src="Flags/lva.png"  class="flag" alt="Latvia"/></td>
-              </tr>
-              <tr>
-                <td>Lebanon</td>
-                <td>2009</td>
-                <td><img src="Flags/lib.png"  class="flag" alt="Lebanon"/></td>
-              </tr>
-              <tr>
-                <td>Liechtenstein</td>
-                <td>&nbsp;</td>
-                <td><img src="Flags/lie.png"  class="flag" alt="Liechtenstein"/></td>
-              </tr>
-              <tr>
-                <td>Lithuania</td>
-                <td>1999</td>
-                <td><img src="Flags/ltu.png"  class="flag" alt="Lithuania"/></td>
-              </tr>
-              <tr>
-                <td>Luxembourg</td>
-                <td>1985</td>
-                <td><img src="Flags/lux.png"  class="flag" alt="Luxembourg"/></td>
-              </tr>
-              <tr>
-                <td>Malaysia</td>
-                <td>&nbsp;</td>
-                <td><img src="Flags/mas.png"  class="flag" alt="Malaysia"/></td>
-              </tr>
-              <tr>
-                <td>Malta</td>
-                <td>&nbsp;</td>
-                <td><img src="Flags/mlt.png"  class="flag" alt="Malta"/></td>
-              </tr>
-              <tr>
-                <td>Mexico</td>
-                <td>1989</td>
-                <td><img src="Flags/mex.png"  class="flag" alt="Mexico"/></td>
-              </tr>
-              <tr>
-                <td>Monaco</td>
-                <td>1979</td>
-                <td><img src="Flags/mon.png"  class="flag" alt="Monaco"/></td>
-              </tr>
-              <tr>
-                <td>Mongolia</td>
-                <td>2016</td>
-                <td><img src="Flags/mng.png"  class="flag" alt="Mongolia"/></td>
-              </tr>
-              <tr>
-                <td>Montenegro</td>
-                <td>2005</td>
-                <td><img src="Flags/mne.png"  class="flag" alt="Montenegro"/></td>
-              </tr>
-              <tr>
-                <td>Morocco</td>
-                <td>1981</td>
-                <td><img src="Flags/mar.png"  class="flag" alt="Morocco"/></td>
-              </tr>
-              <tr>
-                <td>Namibia</td>
-                <td>2013</td>
-                <td><img src="Flags/nam.png"  class="flag" alt="Namibia"/></td>
-              </tr>
-              <tr>
-                <td>Netherlands</td>
-                <td>1979</td>
-                <td><img src="Flags/ned.png"  class="flag" alt="Netherlands"/></td>
-              </tr>
-              <tr>
-                <td>New Zealand</td>
-                <td>2008</td>
-                <td><img src="Flags/nzl.png"  class="flag" alt="New Zealand"/></td>
-              </tr>
-              <tr>
-                <td>Nicaragua</td>
-                <td>2015</td>
-                <td><img src="Flags/nca.png"  class="flag" alt="Nicaragua"/></td>
-              </tr>
-              <tr>
-                <td>Norway</td>
-                <td>&nbsp;</td>
-                <td><img src="Flags/nor.png"  class="flag" alt="Norway"/></td>
-              </tr>
-              <tr>
-                <td>Oman</td>
-                <td>2005</td>
-                <td><img src="Flags/oma.png"  class="flag" alt="Oman"/></td>
-              </tr>
-              <tr>
-                <td>Panama</td>
-                <td>2015</td>
-                <td><img src="Flags/pan.png"  class="flag" alt="Panama"/></td>
-              </tr>
-              <tr>
-                <td>Poland</td>
-                <td>1984</td>
-                <td><img src="Flags/pol.png"  class="flag" alt="Poland"/></td>
-              </tr>
-              <tr>
-                <td>Portugal</td>
-                <td>1985</td>
-                <td><img src="Flags/por.png"  class="flag" alt="Portugal"/></td>
-              </tr>
-              <tr>
-                <td>Republic of Korea</td>
-                <td>2008</td>
-                <td><img src="Flags/kor.png"  class="flag" alt="Republic of Korea"/></td>
-              </tr>
-              <tr>
-                <td>Republic of Moldova</td>
-                <td>2005</td>
-                <td><img src="Flags/mda.png"  class="flag" alt="Moldova"/></td>
-              </tr>
-              <tr>
-                <td>Romania</td>
-                <td>1984</td>
-                <td><img src="Flags/rou.png"  class="flag" alt="Romania"/></td>
-              </tr>
-              <tr>
-                <td>Russian Federation</td>
-                <td>1978</td>
-                <td><img src="Flags/rus.png"  class="flag" alt="Russia"/></td>
-              </tr>
-              <tr>
-                <td>San Marino</td>
-                <td>&nbsp;</td>
-                <td><img src="Flags/smr.png"  class="flag" alt="San Marino"/></td>
-              </tr>
-              <tr>
-                <td>Serbia</td>
-                <td>1983</td>
-                <td><img src="Flags/srb.png"  class="flag" alt="Serbia"/></td>
-              </tr>
-              <tr>
-                <td>Singapore</td>
-                <td>2000</td>
-                <td><img src="Flags/sin.png"  class="flag" alt="Singapore"/></td>
-              </tr>
-              <tr>
-                <td>Slovakia</td>
-                <td>1984</td>
-                <td><img src="Flags/svk.png"  class="flag" alt="Slovakia"/></td>
-              </tr>
-              <tr>
-                <td>Slovenia</td>
-                <td>&nbsp;</td>
-                <td><img src="Flags/slv.png"  class="flag" alt="Slovenia"/></td>
-              </tr>
-              <tr>
-                <td>South Africa</td>
-                <td>2002</td>
-                <td><img src="Flags/rsa.png"  class="flag" alt="South Africa"/></td>
-              </tr>
-              <tr>
-                <td>Spain</td>
-                <td>1985</td>
-                <td><img src="Flags/esp.png"  class="flag" alt="Spain"/></td>
-              </tr>
-              <tr>
-                <td>Sweden</td>
-                <td>1962</td>
-                <td><img src="Flags/swe.png"  class="flag" alt="Sweden"/></td>
-              </tr>
-              <tr>
-                <td>Switzerland</td>
-                <td>1974</td>
-                <td><img src="Flags/sui.png"  class="flag" alt="Switzerland"/></td>
-              </tr>
-              <tr>
-                <td>Taiwan R.O.C</td>
-                <td>1993</td>
-                <td><img src="Flags/tpe.png"  class="flag" alt="Taiwan"/></td>
-              </tr>
-              <tr>
-                <td>Thailand</td>
-                <td>2001</td>
-                <td><img src="Flags/tha.png"  class="flag" alt="Thailand"/></td>
-              </tr>
-              <tr>
-                <td>The former Yugoslav Republic of Macedonia</td>
-                <td>2015</td>
-                <td><img src="Flags/mkd.png"  class="flag" alt="Macedonia"/></td>
-              </tr>
-              <tr>
-                <td>Togo</td>
-                <td>2017</td>
-                <td><img src="Flags/tog.png"  class="flag" alt="Togo"/></td>
-              </tr>
-              <tr>
-                <td>Turkey</td>
-                <td>1984</td>
-                <td><img src="Flags/tur.png"  class="flag" alt="Turkey"/></td>
-              </tr>
-              <tr>
-                <td>Turkmenistan</td>
-                <td>2015</td>
-                <td><img src="Flags/tkm.png"  class="flag" alt="Turkmenistan"/></td>
-              </tr>
-              <tr>
-                <td>United Arab Emirates</td>
-                <td>2005</td>
-                <td><img src="Flags/uae.png"  class="flag" alt="UAE"/></td>
-              </tr>
-              <tr>
-                <td>United Kingdom of Great Britain and Northern Ireland</td>
-                <td>1977</td>
-                <td><img src="Flags/United_Kingdom.png"  class="flag" alt="UK"/></td>
-              </tr>
-              <tr>
-                <td>United States of America</td>
-                <td>1987</td>
-                <td><img src="Flags/usa.png"  class="flag" alt="USA"/></td>
-              </tr>
-              <tr>
-                <td>Ukraine</td>
-                <td>2000</td>
-                <td><img src="Flags/ukr.png"  class="flag" alt="Ukraine"/></td>
-              </tr>
-              <tr>
-                <td>Uzbekistan</td>
-                <td>2007</td>
-                <td><img src="Flags/uzb.png"  class="flag" alt="Uzbekistan"/></td>
-              </tr>
-              <tr>
-                <td>Vatican City</td>
-                <td>1980</td>
-                <td><img src="Flags/vat.png"  class="flag" alt="Vt"/></td>
-              </tr>
-              <tr>
-                <td>Zambia</td>
-                <td>2013</td>
-                <td><img src="Flags/zam.png" class="flag" alt="Zambia"/></td>
-              </tr>
-              <tr>
-                <td>Zimbabwe</td>
-                <td>2013</td>
-                <td><img src="Flags/zim.png" class="flag" alt="Zimbabwe" /></td>
-              </tr>
+                    <div class="UN" style="display: none;" id="LdUnMain">
+                        <table class="table table-bordered table-striped" id="LdUnCount">
+                            <thead>
+                                <tr>
+                                    <th>UN Country</th>
+                                    <th>First visited</th>
+                                    <th>&nbsp;</th>
+                                </tr>
+                            </thead>
+                            <tbody id="LdUn">
 
-            </tbody>
-          </table>
-        </div>
+                            </tbody>
+                        </table>
+                    </div>
 
-        <br />
-        <br />
-      </div>
+                    <br />
+                    <br />
+                </div>
 
-      <div id="crillo" class="tab-pane fade">
-        <br />
-        <br />
-        <button type="button" class="btn btn-info" onclick="toggleByClass('TCC');">TCC</button>
-        <button type="button" class="btn btn-info" onclick="toggleByClass('UN');">UN</button>
-        <br />
-        <br />
+                <div id="crillo" class="tab-pane fade">
+                    <br />
+                    <br />
+                    <button type="button" class="btn btn-info" onclick="toggleByClass('TCC');">TCC</button>
+                    <button type="button" class="btn btn-info" onclick="toggleByClass('UN');">UN</button>
+                    <br />
+                    <br />
 
 <!-- =============================================================================================
     Here starts Crillo's visited TCC-countries 
 ================================================================================================ -->
-        <div class="TCC" style="display: none;">
-          <h4>Crillo's 127 visited TCC countries and territories out of 325</h4>
-          <table class="table table-bordered table-striped">
-            <thead>
-              <tr>
-                <th>TCC Country/Territory</th>
-                <th>First visited</th>
-              </tr>
-            </thead>
-            <tbody>
+                    <div class="TCC" style="display: none;" id="CeTccMain">
+                        <table class="table table-bordered table-striped" id="CeTccCount">
+                            <thead>
+                                <tr>
+                                    <th>TCC Country/Territory</th>
+                                    <th>First visited</th>
+                                </tr>
+                            </thead>
+                            <tbody id="CeTcc">
 
-              <tr>
-                <td>Abu Dhabi U.A.E.</td>
-                <td>2004</td>
-              </tr>
-              <tr>
-                <td>Aland Islands</td>
-                <td>&nbsp;</td>
-              </tr>
-              <tr>
-                <td>Albania</td>
-                <td>2003</td>
-              </tr>
-              <tr>
-                <td>Algeria</td>
-                <td>2014</td>
-              </tr>
-              <tr>
-                <td>Andorra</td>
-                <td>&nbsp;</td>
-              </tr>
-              <tr>
-                <td>Armenia</td>
-                <td>2006</td>
-              </tr>
-              <tr>
-                <td>Australia</td>
-                <td>1987</td>
-              </tr>
-              <tr>
-                <td>Austria</td>
-                <td>&nbsp;</td>
-              </tr>
-              <tr>
-                <td>Azerbaijan</td>
-                <td>2011</td>
-              </tr>
-              <tr>
-                <td>Azores Islands</td>
-                <td>2008</td>
-              </tr>
-              <tr>
-                <td>Balearic Islands</td>
-                <td>&nbsp;</td>
-              </tr>
-              <tr>
-                <td>Bangladesh</td>
-                <td>2005</td>
-              </tr>
-              <tr>
-                <td>Barbados</td>
-                <td>&nbsp;</td>
-              </tr>
-              <tr>
-                <td>Belarus</td>
-                <td>1999</td>
-              </tr>
-              <tr>
-                <td>Belgium</td>
-                <td>1985</td>
-              </tr>
-              <tr>
-                <td>Belize</td>
-                <td>2015</td>
-              </tr>
-              <tr>
-                <td>Benin</td>
-                <td>2017</td>
-              </tr>
-              <tr>
-                <td>Bosnia &amp; Herzegovina</td>
-                <td>2007</td>
-              </tr>
-              <tr>
-                <td>Brazil</td>
-                <td>&nbsp;</td>
-              </tr>
-              <tr>
-                <td>Brunei</td>
-                <td>2007</td>
-              </tr>
-              <tr>
-                <td>Bulgaria</td>
-                <td>&nbsp;</td>
-              </tr>
-              <tr>
-                <td>Canada</td>
-                <td>2010</td>
-              </tr>
-              <tr>
-                <td>Canary Islands</td>
-                <td>&nbsp;</td>
-              </tr>
-              <tr>
-                <td>Ceuta</td>
-                <td>2004</td>
-              </tr>
-              <tr>
-                <td>China People's Rep</td>
-                <td>1987</td>
-              </tr>
-              <tr>
-                <td>Corsica</td>
-                <td>2014</td>
-              </tr>
-              <tr>
-                <td>Croatia</td>
-                <td>&nbsp;</td>
-              </tr>
-              <tr>
-                <td>Cyprus, Rep</td>
-                <td>&nbsp;</td>
-              </tr>
-              <tr>
-                <td>Cyprus, Turkish Fed. State of</td>
-                <td>2016</td>
-              </tr>
-              <tr>
-                <td>Czech Fed Rep</td>
-                <td>&nbsp;</td>
-              </tr>
-              <tr>
-                <td>Denmark</td>
-                <td>&nbsp;</td>
-              </tr>
-              <tr>
-                <td>Dubai U.A.E.</td>
-                <td>&nbsp;</td>
-              </tr>
-              <tr>
-                <td>Egypt</td>
-                <td>2007</td>
-              </tr>
-              <tr>
-                <td>El Salvador</td>
-                <td>2015</td>
-              </tr>
-              <tr>
-                <td>England</td>
-                <td>&nbsp;</td>
-              </tr>
-              <tr>
-                <td>Estonia</td>
-                <td>1992</td>
-              </tr>
-              <tr>
-                <td>Ethiopia</td>
-                <td>2010</td>
-              </tr>
-              <tr>
-                <td>Finland</td>
-                <td>&nbsp;</td>
-              </tr>
-              <tr>
-                <td>France</td>
-                <td>&nbsp;</td>
-              </tr>
-              <tr>
-                <td>Georgia</td>
-                <td>2006</td>
-              </tr>
-              <tr>
-                <td>Germany</td>
-                <td>&nbsp;</td>
-              </tr>
-              <tr>
-                <td>Ghana</td>
-                <td>2009</td>
-              </tr>
-              <tr>
-                <td>Gibraltar</td>
-                <td>2004</td>
-              </tr>
-              <tr>
-                <td>Greece</td>
-                <td>&nbsp;</td>
-              </tr>
-              <tr>
-                <td>Grenada</td>
-                <td>&nbsp;</td>
-              </tr>
-              <tr>
-                <td>Guatemala</td>
-                <td>2015</td>
-              </tr>
-              <tr>
-                <td>Guernsey</td>
-                <td>2001</td>
-              </tr>
-              <tr>
-                <td>Honduras</td>
-                <td>2015</td>
-              </tr>
-              <tr>
-                <td>Hong Kong</td>
-                <td>1987</td>
-              </tr>
-              <tr>
-                <td>Hungary</td>
-                <td>&nbsp;</td>
-              </tr>
-              <tr>
-                <td>Iceland</td>
-                <td>&nbsp;</td>
-              </tr>
-              <tr>
-                <td>India</td>
-                <td>2009</td>
-              </tr>
-              <tr>
-                <td>Indonesia</td>
-                <td>1987</td>
-              </tr>
-              <tr>
-                <td>Iran</td>
-                <td>2015</td>
-              </tr>
-              <tr>
-                <td>Ireland</td>
-                <td>1988</td>
-              </tr>
-              <tr>
-                <td>Ireland, Northern</td>
-                <td>1988</td>
-              </tr>
-              <tr>
-                <td>Italy</td>
-                <td>&nbsp;</td>
-              </tr>
-              <tr>
-                <td>Ivory Coast</td>
-                <td>2017</td>
-              </tr>
-              <tr>
-                <td>Jamaica</td>
-                <td>2008</td>
-              </tr>
-              <tr>
-                <td>Jersey</td>
-                <td>2001</td>
-              </tr>
-              <tr>
-                <td>Jordan</td>
-                <td>2018</td>
-              </tr>
-              <tr>
-                <td>Kaliningrad</td>
-                <td>2002</td>
-              </tr>
-              <tr>
-                <td>Kazakhstan</td>
-                <td>2013</td>
-              </tr>
-              <tr>
-                <td>Kenya</td>
-                <td>1990</td>
-              </tr>
-              <tr>
-                <td>Korea, North (Democratic People's Repbublic of Korea)</td>
-                <td>2016</td>
-              </tr>
-              <tr>
-                <td>Kosovo</td>
-                <td>2008</td>
-              </tr>
-              <tr>
-                <td>Kyrgyzstan</td>
-                <td>2013</td>
-              </tr>
-              <tr>
-                <td>Latvia</td>
-                <td>1992</td>
-              </tr>
-              <tr>
-                <td>Lebanon</td>
-                <td>2009</td>
-              </tr>
-              <tr>
-                <td>Lesser Sunda Islands</td>
-                <td>1987</td>
-              </tr>
-              <tr>
-                <td>Libya</td>
-                <td>2006</td>
-              </tr>
-              <tr>
-                <td>Liechtenstein</td>
-                <td>2005</td>
-              </tr>
-              <tr>
-                <td>Lithuania</td>
-                <td>1999</td>
-              </tr>
-              <tr>
-                <td>Luxembourg</td>
-                <td>1985</td>
-              </tr>
-              <tr>
-                <td>Macedonia</td>
-                <td>2015</td>
-              </tr>
-              <tr>
-                <td>Madeira</td>
-                <td>&nbsp;</td>
-              </tr>
-              <tr>
-                <td>Malaysia</td>
-                <td>2006</td>
-              </tr>
-              <tr>
-                <td>Martinique</td>
-                <td>&nbsp;</td>
-              </tr>
-              <tr>
-                <td>Mexico</td>
-                <td>2015</td>
-              </tr>
-              <tr>
-                <td>Moldova</td>
-                <td>2005</td>
-              </tr>
-              <tr>
-                <td>Monaco</td>
-                <td>&nbsp;</td>
-              </tr>
-              <tr>
-                <td>Mongolia</td>
-                <td>1987</td>
-              </tr>
-              <tr>
-                <td>Montenegro</td>
-                <td>2007</td>
-              </tr>
-              <tr>
-                <td>Morocco</td>
-                <td>2004</td>
-              </tr>
-              <tr>
-                <td>Nakhichevan</td>
-                <td>2011</td>
-              </tr>
-              <tr>
-                <td>Netherlands</td>
-                <td>&nbsp;</td>
-              </tr>
-              <tr>
-                <td>Nigeria</td>
-                <td>2006</td>
-              </tr>
-              <tr>
-                <td>Norway</td>
-                <td>&nbsp;</td>
-              </tr>
-              <tr>
-                <td>Oman</td>
-                <td>2007</td>
-              </tr>
-              <tr>
-                <td>Poland</td>
-                <td>2002</td>
-              </tr>
-              <tr>
-                <td>Portugal</td>
-                <td>1985</td>
-              </tr>
-              <tr>
-                <td>Qatar</td>
-                <td>2007</td>
-              </tr>
-              <tr>
-                <td>Romania</td>
-                <td>2005</td>
-              </tr>
-              <tr>
-                <td>Russia</td>
-                <td>&nbsp;</td>
-              </tr>
-              <tr>
-                <td>San Marino</td>
-                <td>2011</td>
-              </tr>
-              <tr>
-                <td>Sarawak</td>
-                <td>2007</td>
-              </tr>
-              <tr>
-                <td>Sardinia</td>
-                <td>&nbsp;</td>
-              </tr>
-              <tr>
-                <td>Saudi Arabia</td>
-                <td>2007</td>
-              </tr>
-              <tr>
-                <td>Scotland</td>
-                <td>&nbsp;</td>
-              </tr>
-              <tr>
-                <td>Serbia</td>
-                <td>&nbsp;</td>
-              </tr>
-              <tr>
-                <td>Siberia</td>
-                <td>1986</td>
-              </tr>
-              <tr>
-                <td>Sicily</td>
-                <td>2007</td>
-              </tr>
-              <tr>
-                <td>Singapore</td>
-                <td>2006</td>
-              </tr>
-              <tr>
-                <td>Slovakia</td>
-                <td>2013</td>
-              </tr>
-              <tr>
-                <td>Slovenia</td>
-                <td>&nbsp;</td>
-              </tr>
-              <tr>
-                <td>Spain</td>
-                <td>1985</td>
-              </tr>
-              <tr>
-                <td>Spitsbergen</td>
-                <td>2007</td>
-              </tr>
-              <tr>
-                <td>Srpska</td>
-                <td>2007</td>
-              </tr>
-              <tr>
-                <td>St Lucia</td>
-                <td>&nbsp;</td>
-              </tr>
-              <tr>
-                <td>Sweden</td>
-                <td>1962</td>
-              </tr>
-              <tr>
-                <td>Switzerland</td>
-                <td>&nbsp;</td>
-              </tr>
-              <tr>
-                <td>Tanzania</td>
-                <td>1990</td>
-              </tr>
-              <tr>
-                <td>Thailand</td>
-                <td>2005</td>
-              </tr>
-              <tr>
-                <td>Togo</td>
-                <td>2017</td>
-              </tr>
-              <tr>
-                <td>Trans Dniester</td>
-                <td>2005</td>
-              </tr>
-              <tr>
-                <td>Trinidad & Tobago</td>
-                <td>&nbsp;</td>
-              </tr>
-              <tr>
-                <td>Tunisia</td>
-                <td>&nbsp;</td>
-              </tr>
-              <tr>
-                <td>Turkey in Asia</td>
-                <td>&nbsp;</td>
-              </tr>
-              <tr>
-                <td>Turkey in Europe</td>
-                <td>&nbsp;</td>
-              </tr>
-              <tr>
-                <td>Turkmenistan</td>
-                <td>2015</td>
-              </tr>
-              <tr>
-                <td>Ukraine</td>
-                <td>2000</td>
-              </tr>
-              <tr>
-                <td>United States</td>
-                <td>2008</td>
-              </tr>
-              <tr>
-                <td>Vatican City</td>
-                <td>&nbsp;</td>
-              </tr>
-              <tr>
-                <td>Wales</td>
-                <td>&nbsp;</td>
-              </tr>
-              <tr>
-                <td>Vietnam</td>
-                <td>2008</td>
-              </tr>
-              <tr>
-                <td>Zanzibar</td>
-                <td>1990</td>
-              </tr>
-              <tr>
-                <td>Yemen, South Rep</td>
-                <td>1990</td>
-              </tr>
-
-            </tbody>
-          </table>
-        </div>
-
+                            </tbody>
+                        </table>
+                    </div>
 <!-- =============================================================================================
     Here starts Crillo's visited UN-countries 
 ================================================================================================ -->
-        <div class="UN" style="display: none;">
-          <h4>Crillo's 97 out of 195 visited UN countries including Vatican City and Taiwan R.O.C.</h4>
-          <table class="table table-bordered table-striped">
-            <thead>
-              <tr>
-                <th>UN Country</th>
-                <th>First visited</th>
-                <th>&nbsp;</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Albania</td>
-                <td>2003</td>
-                <td><img src="Flags/alb.png"  class="flag" alt="Albania"/></td>
-              </tr>
-              <tr>
-                <td>Algeria</td>
-                <td>2014</td>
-                <td><img src="Flags/alg.png"  class="flag" alt="Algeria"/></td>
-              </tr>
-              <tr>
-                <td>Andorra</td>
-                <td>&nbsp;</td>
-                <td><img src="Flags/and.png"  class="flag" alt="Andorra"/></td>
-              </tr>
-              <tr>
-                <td>Armenia</td>
-                <td>2006</td>
-                <td><img src="Flags/arm.png"  class="flag" alt="Armenia"/></td>
-              </tr>
-              <tr>
-                <td>Australia</td>
-                <td>1987</td>
-                <td><img src="Flags/aus.png"  class="flag" alt="Australia"/></td>
-              </tr>
-              <tr>
-                <td>Austria</td>
-                <td>&nbsp;</td>
-                <td><img src="Flags/aut.png"  class="flag" alt="Austria"/></td>
-              </tr>
-              <tr>
-                <td>Azerbaijan</td>
-                <td>2011</td>
-                <td><img src="Flags/aze.png"  class="flag" alt="Azerbaijan"/></td>
-              </tr>
-              <tr>
-                <td>Bangladesh</td>
-                <td>2005</td>
-                <td><img src="Flags/ban.png"  class="flag" alt="Bangladesh"/></td>
-              </tr>
-              <tr>
-                <td>Barbados</td>
-                <td>&nbsp;</td>
-                <td><img src="Flags/brb.png"  class="flag" alt="Barbados"/></td>
-              </tr>
-              <tr>
-                <td>Belarus</td>
-                <td>1999</td>
-                <td><img src="Flags/blr.png"  class="flag" alt="Belarus"/></td>
-              </tr>
-              <tr>
-                <td>Belgium</td>
-                <td>1985</td>
-                <td><img src="Flags/bel.png"  class="flag" alt="Belgium"/></td>
-              </tr>
-              <tr>
-                <td>Belize</td>
-                <td>2015</td>
-                <td><img src="Flags/blz.png"  class="flag" alt="Belize"/></td>
-              </tr>
-              <tr>
-                <td>Benin</td>
-                <td>2017</td>
-                <td><img src="Flags/ben.png"  class="flag" alt="Benin"/></td>
-              </tr>
-              <tr>
-                <td>Bosnia &amp; Herzegovina</td>
-                <td>2007</td>
-                <td><img src="Flags/bih.png"  class="flag" alt="Bosnia"/></td>
-              </tr>
-              <tr>
-                <td>Brazil</td>
-                <td>&nbsp;</td>
-                <td><img src="Flags/bra.png"  class="flag" alt="Brazil"/></td>
-              </tr>
-              <tr>
-                <td>Brunei Darussalam</td>
-                <td>2007</td>
-                <td><img src="Flags/bru.png"  class="flag" alt="Brunei"/></td>
-              </tr>
-              <tr>
-                <td>Bulgaria</td>
-                <td>&nbsp;</td>
-                <td><img src="Flags/bul.png"  class="flag" alt="Bulgaria"/></td>
-              </tr>
-              <tr>
-                <td>Canada</td>
-                <td>2010</td>
-                <td><img src="Flags/can.png"  class="flag" alt="Canada"/></td>
-              </tr>
-              <tr>
-                <td>China</td>
-                <td>1987</td>
-                <td><img src="Flags/chi.png"  class="flag" alt="China"/></td>
-              </tr>
-              <tr>
-                <td>Côte D'Ivoire</td>
-                <td>2017</td>
-                <td><img src="Flags/civ.png"  class="flag" alt="Côte D'Ivoire"/></td>
-              </tr>
-              <tr>
-                <td>Croatia</td>
-                <td>&nbsp;</td>
-                <td><img src="Flags/cro.png"  class="flag" alt="Croatia"/></td>
-              </tr>
-              <tr>
-                <td>Cyprus</td>
-                <td>&nbsp;</td>
-                <td><img src="Flags/cyp.png"  class="flag" alt="Cyprus"/></td>
-              </tr>
-              <tr>
-                <td>Czech Republic</td>
-                <td>&nbsp;</td>
-                <td><img src="Flags/cze.png"  class="flag" alt="Czech"/></td>
-              </tr>
-              <tr>
-                <td>Democratic People's Repbublic of Korea</td>
-                <td>2016</td>
-                <td><img src="Flags/prk.png"  class="flag" alt="DPRK"/></td>
-              </tr>
-              <tr>
-                <td>Denmark</td>
-                <td>&nbsp;</td>
-                <td><img src="Flags/den.png"  class="flag" alt="Denmark"/></td>
-              </tr>
-              <tr>
-                <td>Egypt</td>
-                <td>2007</td>
-                <td><img src="Flags/egy.png"  class="flag" alt="Egypt"/></td>
-              </tr>
-              <tr>
-                <td>El Salvador</td>
-                <td>2015</td>
-                <td><img src="Flags/slv.png"  class="flag" alt="El Salvador"/></td>
-              </tr>
-              <tr>
-                <td>Estonia</td>
-                <td>1992</td>
-                <td><img src="Flags/est.png"  class="flag" alt="Estonia"/></td>
-              </tr>
-              <tr>
-                <td>Ethiopia</td>
-                <td>2010</td>
-                <td><img src="Flags/eth.png"  class="flag" alt="Ethiopia"/></td>
-              </tr>
-              <tr>
-                <td>Finland</td>
-                <td>&nbsp;</td>
-                <td><img src="Flags/fin.png"  class="flag" alt="Finland"/></td>
-              </tr>
-              <tr>
-                <td>France</td>
-                <td>&nbsp;</td>
-                <td><img src="Flags/fra.png"  class="flag" alt="France"/></td>
-              </tr>
-              <tr>
-                <td>Georgia</td>
-                <td>2006</td>
-                <td><img src="Flags/geo.png"  class="flag" alt="Georgia"/></td>
-              </tr>
-              <tr>
-                <td>Germany</td>
-                <td>&nbsp;</td>
-                <td><img src="Flags/ger.png"  class="flag" alt="Germany"/></td>
-              </tr>
-              <tr>
-                <td>Ghana</td>
-                <td>2009</td>
-                <td><img src="Flags/gha.png"  class="flag" alt="Ghana"/></td>
-              </tr>
-              <tr>
-                <td>Greece</td>
-                <td>&nbsp;</td>
-                <td><img src="Flags/ger.png"  class="flag" alt="Greece"/></td>
-              </tr>
-              <tr>
-                <td>Grenada</td>
-                <td>&nbsp;</td>
-                <td><img src="Flags/grn.png"  class="flag" alt="Grenada"/></td>
-              </tr>
-              <tr>
-                <td>Guatemala</td>
-                <td>2015</td>
-                <td><img src="Flags/gua.png"  class="flag" alt="Guatemala"/></td>
-              </tr>
-              <tr>
-                <td>Honduras</td>
-                <td>2015</td>
-                <td><img src="Flags/hon.png"  class="flag" alt="Honduras"/></td>
-              </tr>
-              <tr>
-                <td>Hungary</td>
-                <td>&nbsp;</td>
-                <td><img src="Flags/hun.png"  class="flag" alt="Hungary"/></td>
-              </tr>
-              <tr>
-                <td>Iceland</td>
-                <td>&nbsp;</td>
-                <td><img src="Flags/isl.png"  class="flag" alt="Iceland"/></td>
-              </tr>
-              <tr>
-                <td>India</td>
-                <td>2009</td>
-                <td><img src="Flags/ind.png"  class="flag" alt="India"/></td>
-              </tr>
-              <tr>
-                <td>Indonesia</td>
-                <td>1987</td>
-                <td><img src="Flags/ino.jpg"  width="34" height="22" alt="Indonesia"/></td>
-              </tr>
-              <tr>
-                <td>Iran (Islamic Republic of)</td>
-                <td>2015</td>
-                <td><img src="Flags/irn.png"  class="flag" alt="Iran"/></td>
-              </tr>
-              <tr>
-                <td>Ireland</td>
-                <td>1988</td>
-                <td><img src="Flags/irl.png"  class="flag" alt="Ireland"/></td>
-              </tr>
-              <tr>
-                <td>Italy</td>
-                <td>&nbsp;</td>
-                <td><img src="Flags/ita.png"  class="flag" alt="Italy"/></td>
-              </tr>
-              <tr>
-                <td>Jamaica</td>
-                <td>2008</td>
-                <td><img src="Flags/jam.png"  class="flag" alt="Jamaica"/></td>
-              </tr>
-              <tr>
-                <td>Jordan</td>
-                <td>2018</td>
-                <td><img src="Flags/jor.png"  class="flag" alt="Jordan"/></td>
-              </tr>
-              <tr>
-                <td>Kazakhstan</td>
-                <td>2013</td>
-                <td><img src="Flags/kaz.png"  class="flag" alt="Kazakhstan"/></td>
-              </tr>
-              <tr>
-                <td>Kenya</td>
-                <td>1990</td>
-                <td><img src="Flags/ken.png"  class="flag" alt="Kenya"/></td>
-              </tr>
-              <tr>
-                <td>Kyrgyzstan</td>
-                <td>2013</td>
-                <td><img src="Flags/kgz.png"  class="flag" alt="Kyrgyzstan"/></td>
-              </tr>
-              <tr>
-                <td>Latvia</td>
-                <td>1992</td>
-                <td><img src="Flags/lva.png"  class="flag" alt="Latvia"/></td>
-              </tr>
-              <tr>
-                <td>Lebanon</td>
-                <td>2009</td>
-                <td><img src="Flags/lib.png"  class="flag" alt="Lebanon"/></td>
-              </tr>
-              <tr>
-                <td>Libya</td>
-                <td>2006</td>
-                <td><img src="Flags/lby.png"  class="flag" alt="Libya"/></td>
-              </tr>
-              <tr>
-                <td>Liechtenstein</td>
-                <td>2005</td>
-                <td><img src="Flags/lie.png"  class="flag" alt="Liechtenstein"/></td>
-              </tr>
-              <tr>
-                <td>Lithuania</td>
-                <td>1999</td>
-                <td><img src="Flags/ltu.png"  class="flag" alt="Lithuania"/></td>
-              </tr>
-              <tr>
-                <td>Luxembourg</td>
-                <td>1985</td>
-                <td><img src="Flags/lux.png"  class="flag" alt="Luxembourg"/></td>
-              </tr>
-              <tr>
-                <td>Malaysia</td>
-                <td>2006</td>
-                <td><img src="Flags/mas.png"  class="flag" alt="Malaysia"/></td>
-              </tr>
-              <tr>
-                <td>Mexico</td>
-                <td>2015</td>
-                <td><img src="Flags/mex.png"  class="flag" alt="Mexico"/></td>
-              </tr>
-              <tr>
-                <td>Monaco</td>
-                <td>&nbsp;</td>
-                <td><img src="Flags/m.png"  class="flag" alt="Monaco"/></td>
-              </tr>
-              <tr>
-                <td>Mongolia</td>
-                <td>1987</td>
-                <td><img src="Flags/mng.png"  class="flag" alt="Mongolia"/></td>
-              </tr>
-              <tr>
-                <td>Montenegro</td>
-                <td>2007</td>
-                <td><img src="Flags/mne.png"  class="flag" alt="Montenegro"/></td>
-              </tr>
-              <tr>
-                <td>Morocco</td>
-                <td>2004</td>
-                <td><img src="Flags/mar.png"  class="flag" alt="Morocco"/></td>
-              </tr>
-              <tr>
-                <td>Netherlands</td>
-                <td>&nbsp;</td>
-                <td><img src="Flags/ned.png"  class="flag" alt="Netherlands"/></td>
-              </tr>
-              <tr>
-                <td>Nigeria</td>
-                <td>2006</td>
-                <td><img src="Flags/nig.png"  class="flag" alt="Nigeria"/></td>
-              </tr>
-              <tr>
-                <td>Norway</td>
-                <td>&nbsp;</td>
-                <td><img src="Flags/nor.png"  class="flag" alt="Norway"/></td>
-              </tr>
-              <tr>
-                <td>Oman</td>
-                <td>2007</td>
-                <td><img src="Flags/oma.png"  class="flag" alt="Oman"/></td>
-              </tr>
-              <tr>
-                <td>Poland</td>
-                <td>2002</td>
-                <td><img src="Flags/pol.png"  class="flag" alt="Poland"/></td>
-              </tr>
-              <tr>
-                <td>Portugal</td>
-                <td>1985</td>
-                <td><img src="Flags/por.png"  class="flag" alt="Portugal"/></td>
-              </tr>
-              <tr>
-                <td>Qatar</td>
-                <td>2007</td>
-                <td><img src="Flags/qat.png"  class="flag" alt="Qatar"/></td>
-              </tr>
-              <tr>
-                <td>Romania</td>
-                <td>2005</td>
-                <td><img src="Flags/rou.png"  class="flag" alt="Romania"/></td>
-              </tr>
-              <tr>
-                <td>Republic of Moldova</td>
-                <td>2005</td>
-                <td><img src="Flags/mda.png"  class="flag" alt="Moldova"/></td>
-              </tr>
-              <tr>
-                <td>Russian Federation</td>
-                <td>&nbsp;</td>
-                <td><img src="Flags/rus.png"  class="flag" alt="Russia"/></td>
-              </tr>
-              <tr>
-                <td>Saint Lucia</td>
-                <td>&nbsp;</td>
-                <td><img src="Flags/lca.png"  class="flag" alt="Sint Lucia"/></td>
-              </tr>
-              <tr>
-                <td>San Marino</td>
-                <td>2011</td>
-                <td><img src="Flags/sam.png"  class="flag" alt="San Marino"/></td>
-              </tr>
-              <tr>
-                <td>Saudi Arabia</td>
-                <td>2007</td>
-                <td><img src="Flags/ksa.png"  class="flag" alt="Saudi Arabia"/></td>
-              </tr>
-              <tr>
-                <td>Serbia</td>
-                <td>&nbsp;</td>
-                <td><img src="Flags/srb.png"  class="flag" alt="Serbia"/></td>
-              </tr>
-              <tr>
-                <td>Singapore</td>
-                <td>2006</td>
-                <td><img src="Flags/sin.png"  class="flag" alt="Singapore"/></td>
-              </tr>
-              <tr>
-                <td>Slovakia</td>
-                <td>2013</td>
-                <td><img src="Flags/svk.png"  class="flag" alt="Slovakia"/></td>
-              </tr>
-              <tr>
-                <td>Slovenia</td>
-                <td>&nbsp;</td>
-                <td><img src="Flags/svn.png"  class="flag" alt="Slovenia"/></td>
-              </tr>
-              <tr>
-                <td>Spain</td>
-                <td>1985</td>
-                <td><img src="Flags/esp.png"  class="flag" alt="Spain"/></td>
-              </tr>
-              <tr>
-                <td>Sweden</td>
-                <td>1962</td>
-                <td><img src="Flags/swe.png"  class="flag" alt="Sweden"/></td>
-              </tr>
-              <tr>
-                <td>Switzerland</td>
-                <td>&nbsp;</td>
-                <td><img src="Flags/sui.png"  class="flag" alt="Switzerland"/></td>
-              </tr>
-              <tr>
-                <td>Thailand</td>
-                <td>2005</td>
-                <td><img src="Flags/tha.png"  class="flag" alt="Thailand"/></td>
-              </tr>
-              <tr>
-                <td>The former Yugoslav Republic of Macedonia</td>
-                <td>2015</td>
-                <td><img src="Flags/mkd.png"  class="flag" alt="Macedonia"/></td>
-              </tr>
-              <tr>
-                <td>Togo</td>
-                <td>2017</td>
-                <td><img src="Flags/tog.png" class="flag" alt="Togo"/></td>
-              </td>
-              <tr>
-                <td>Trinidad and Tobago</td>
-                <td>&nbsp;</td>
-                <td><img src="Flags/tri.png"  class="flag" alt="Trinidad and Tobago"/></td>
-              </tr>
-              <tr>
-                <td>Tunisia</td>
-                <td>&nbsp;</td>
-                <td><img src="Flags/tun.png"  class="flag" alt="Tunisia"/></td>
-              </tr>
-              <tr>
-                <td>Turkey</td>
-                <td>&nbsp;</td>
-                <td><img src="Flags/tur.png"  class="flag" alt="Turkey"/></td>
-              </tr>
-              <tr>
-                <td>Turkmenistan</td>
-                <td>2015</td>
-                <td><img src="Flags/tkm.png"  class="flag" alt="Turkmenistan"/></td>
-              </tr>
-              <tr>
-                <td>Ukraine</td>
-                <td>2000</td>
-                <td><img src="Flags/ukr.png"  class="flag" alt="Ukraine"/></td>
-              </tr>
-              <tr>
-                <td>United Arab Emirates</td>
-                <td>&nbsp;</td>
-                <td><img src="Flags/uae.png"  class="flag" alt="United arab emirates"/></td>
-              </tr>
-              <tr>
-                <td>United Kingdom of Great Britain and Northern Ireland</td>
-                <td>&nbsp;</td>
-                <td><img src="Flags/United_Kingdom.png"  class="flag" alt="UK"/></td>
-              </tr>
-              <tr>
-                <td>United Republic of Tanzania</td>
-                <td>1990</td>
-                <td><img src="Flags/tan.png"  class="flag" alt="Tanzania"/></td>
-              </tr>
-              <tr>
-                <td>United States of America</td>
-                <td>2008</td>
-                <td><img src="Flags/usa.png"  class="flag" alt="USA"/></td>
-              </tr>
-              <tr>
-                <td>Vatican City</td>
-                <td>&nbsp;</td>
-                <td><img src="Flags/vt.png"  class="flag" alt="Vt"/></td>
-              </tr>
-              <tr>
-                <td>Viet Nam</td>
-                <td>2008</td>
-                <td><img src="Flags/vie.png"  class="flag" alt="Viet Nam"/></td>
-              </tr>
-              <tr>
-                <td>Yemen</td>
-                <td>1990</td>
-                <td><img src="Flags/yem.png"  class="flag" alt="Yemen"/></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+                    <div class="UN" style="display: none;" id="CeUnMain">
+                        <table class="table table-bordered table-striped" id="CeUnCount">
+                            <thead>
+                                <tr>
+                                    <th>UN Country</th>
+                                    <th>First visited</th>
+                                    <th>&nbsp;</th>
+                                </tr>
+                            </thead>
+                            <tbody id="CeUn">
 
-        <br />
-        <br />
-      </div>
+                            </tbody>
+                        </table>
+                    </div>
+                    <br />
+                    <br />
+                </div>
 
-      <div id="ove" class="tab-pane fade">
-        <br />
-        <br />
-        <button type="button" class="btn btn-info" onclick="toggleByClass('TCC');">TCC</button>
-        <button type="button" class="btn btn-info" onclick="toggleByClass('UN');">UN</button>
-        <br />
-        <br />
+                <div id="ove" class="tab-pane fade">
+                    <br />
+                    <br />
+                    <button type="button" class="btn btn-info" onclick="toggleByClass('TCC');">TCC</button>
+                    <button type="button" class="btn btn-info" onclick="toggleByClass('UN');">UN</button>
+                    <br />
+                    <br />
 
 <!-- =============================================================================================
     Here starts Ove's visited TCC-countries 
 ================================================================================================ -->
-        <div class="TCC" style="display: none;">
-          <h4>Ove's 123 visited TCC countries and territories out of 325</h4>
-          <table class="table table-bordered table-striped">
-            <thead>
-              <tr>
-                <th>TCC Country/Territory</th>
-                <th>First visited</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Abu Dhabi U.A.E.</td>
-                <td>&nbsp;</td>
-              </tr>
-              <tr>
-                <td>Aland Islands</td>
-                <td>&nbsp;</td>
-              </tr>
-              <tr>
-                <td>Albania</td>
-                <td>2003</td>
-              </tr>
-              <tr>
-                <td>Algeria</td>
-                <td>2014</td>
-              </tr>
-              <tr>
-                <td>Argentina</td>
-                <td>2007</td>
-              </tr>
-              <tr>
-                <td>Armenia</td>
-                <td>2006</td>
-              </tr>
-              <tr>
-                <td>Australia</td>
-                <td>1987</td>
-              </tr>
-              <tr>
-                <td>Austria</td>
-                <td>1983</td>
-              </tr>
-              <tr>
-                <td>Azerbaijan</td>
-                <td>2011</td>
-              </tr>
-              <tr>
-                <td>Azores Islands</td>
-                <td>1998</td>
-              </tr>
-              <tr>
-                <td>Belarus</td>
-                <td>1999</td>
-              </tr>
-              <tr>
-                <td>Belgium</td>
-                <td>1985</td>
-              </tr>
-              <tr>
-                <td>Benin</td>
-                <td>2017</td>
-              </tr>
-              <tr>
-                <td>Bosnia &amp; Herzegovina</td>
-                <td>1983</td>
-              </tr>
-              <tr>
-                <td>Botswana</td>
-                <td>2012</td>
-              </tr>
-              <tr>
-                <td>Brazil</td>
-                <td>2007</td>
-              </tr>
-              <tr>
-                <td>Bulgaria</td>
-                <td>1984</td>
-              </tr>
-              <tr>
-                <td>Canada</td>
-                <td>2005</td>
-              </tr>
-              <tr>
-                <td>Canary Islands</td>
-                <td>2010</td>
-              </tr>
-              <tr>
-                <td>Ceuta</td>
-                <td>2004</td>
-              </tr>
-              <tr>
-                <td>Chile</td>
-                <td>2007</td>
-              </tr>
-              <tr>
-                <td>China, People's Rep.</td>
-                <td>1987</td>
-              </tr>
-              <tr>
-                <td>Cook Islands</td>
-                <td>2005</td>
-              </tr>
-              <tr>
-                <td>Costa Rica</td>
-                <td>1996</td>
-              </tr>
-              <tr>
-                <td>Crete</td>
-                <td>1997</td>
-              </tr>
-              <tr>
-                <td>Croatia</td>
-                <td>1983</td>
-              </tr>
-              <tr>
-                <td>Cyprus, Republic</td>
-                <td>1990</td>
-              </tr>
-              <tr>
-                <td>Cyprus, Turkish Fed. State of</td>
-                <td>2016</td>
-              </tr>
-              <tr>
-                <td>Czech Fed Rep</td>
-                <td>1983</td>
-              </tr>
-              <tr>
-                <td>Denmark</td>
-                <td>&nbsp;</td>
-              </tr>
-              <tr>
-                <td>Dominican Republic</td>
-                <td>1994</td>
-              </tr>
-              <tr>
-                <td>Dubai U.A.E.</td>
-                <td>1992</td>
-              </tr>
-              <tr>
-                <td>Ecuador</td>
-                <td>1994</td>
-              </tr>
-              <tr>
-                <td>England</td>
-                <td>1986</td>
-              </tr>
-              <tr>
-                <td>Estonia</td>
-                <td>1992</td>
-              </tr>
-              <tr>
-                <td>Ethiopia</td>
-                <td>2010</td>
-              </tr>
-              <tr>
-                <td>Finland</td>
-                <td>&nbsp;</td>
-              </tr>
-              <tr>
-                <td>France</td>
-                <td>1985</td>
-              </tr>
-              <tr>
-                <td>French Polynesia</td>
-                <td>2005</td>
-              </tr>
-              <tr>
-                <td>Gambia</td>
-                <td>2010</td>
-              </tr>
-              <tr>
-                <td>Georgia</td>
-                <td>2006</td>
-              </tr>
-              <tr>
-                <td>Germany</td>
-                <td>&nbsp;</td>
-              </tr>
-              <tr>
-                <td>Ghana</td>
-                <td>2017</td>
-              </tr>
-              <tr>
-                <td>Gibraltar</td>
-                <td>2004</td>
-              </tr>
-              <tr>
-                <td>Guernsey</td>
-                <td>2001</td>
-              </tr>
-              <tr>
-                <td>Hong Kong</td>
-                <td>1987</td>
-              </tr>
-              <tr>
-                <td>Hungary</td>
-                <td>1983</td>
-              </tr>
-              <tr>
-                <td>India</td>
-                <td>1989</td>
-              </tr>
-              <tr>
-                <td>Indonesia</td>
-                <td>1987</td>
-              </tr>
-              <tr>
-                <td>Iran</td>
-                <td>2015</td>
-              </tr>
-              <tr>
-                <td>Ireland</td>
-                <td>1988</td>
-              </tr>
-              <tr>
-                <td>Ireland, Northern</td>
-                <td>1988</td>
-              </tr>
-              <tr>
-                <td>Italy</td>
-                <td>1997</td>
-              </tr>
-              <tr>
-                <td>Jersey</td>
-                <td>2001</td>
-              </tr>
-              <tr>
-                <td>Jordan</td>
-                <td>2018</td>
-              </tr>
-              <tr>
-                <td>Kalimantan</td>
-                <td>1995</td>
-              </tr>
-              <tr>
-                <td>Kaliningrad</td>
-                <td>2002</td>
-              </tr>
-              <tr>
-                <td>Kazakhstan</td>
-                <td>2013</td>
-              </tr>
-              <tr>
-                <td>Kenya</td>
-                <td>1990</td>
-              </tr>
-              <tr>
-                <td>Korea, North (Democratic People's Repbublic of Korea)</td>
-                <td>2016</td>
-              </tr>
-              <tr>
-                <td>Kosovo</td>
-                <td>2008</td>
-              </tr>
-              <tr>
-                <td>Kyrgyzstan</td>
-                <td>2013</td>
-              </tr>
-              <tr>
-                <td>Latvia</td>
-                <td>1992</td>
-              </tr>
-              <tr>
-                <td>Lebanon</td>
-                <td>2009</td>
-              </tr>
-              <tr>
-                <td>Lesser Sunda Islands</td>
-                <td>1987</td>
-              </tr>
-              <tr>
-                <td>Lithuania</td>
-                <td>1999</td>
-              </tr>
-              <tr>
-                <td>Luxembourg</td>
-                <td>1985</td>
-              </tr>
-              <tr>
-                <td>Madeira</td>
-                <td>2001</td>
-              </tr>
-              <tr>
-                <td>Macedonia</td>
-                <td>2015</td>
-              </tr>
-              <tr>
-                <td>Malaysia</td>
-                <td>1992</td>
-              </tr>
-              <tr>
-                <td>Mexico</td>
-                <td>1996</td>
-              </tr>
-              <tr>
-                <td>Moldova</td>
-                <td>2005</td>
-              </tr>
-              <tr>
-                <td>Mongolia, Rep</td>
-                <td>1987</td>
-              </tr>
-              <tr>
-                <td>Morocco</td>
-                <td>2004</td>
-              </tr>
-              <tr>
-                <td>Nakhichevan</td>
-                <td>2011</td>
-              </tr>
-              <tr>
-                <td>Namibia</td>
-                <td>2012</td>
-              </tr>
-              <tr>
-                <td>Nepal</td>
-                <td>1989</td>
-              </tr>
-              <tr>
-                <td>Netherlands</td>
-                <td>1985</td>
-              </tr>
-              <tr>
-                <td>New Zealand</td>
-                <td>2001</td>
-              </tr>
-              <tr>
-                <td>Norway</td>
-                <td>&nbsp;</td>
-              </tr>
-              <tr>
-                <td>Oman</td>
-                <td>2006</td>
-              </tr>
-              <tr>
-                <td>Panama</td>
-                <td>1996</td>
-              </tr>
-              <tr>
-                <td>Poland</td>
-                <td>1984</td>
-              </tr>
-              <tr>
-                <td>Portugal</td>
-                <td>1985</td>
-              </tr>
-              <tr>
-                <td>Qatar</td>
-                <td>2009</td>
-              </tr>
-              <tr>
-                <td>Republic of South Africa</td>
-                <td>2003</td>
-              </tr>
-              <tr>
-                <td>Romania</td>
-                <td>1984</td>
-              </tr>
-              <tr>
-                <td>Russia</td>
-                <td>1986</td>
-              </tr>
-              <tr>
-                <td>Sabah</td>
-                <td>1992</td>
-              </tr>
-              <tr>
-                <td>Scotland</td>
-                <td>1986</td>
-              </tr>
-              <tr>
-                <td>Senegal</td>
-                <td>2010</td>
-              </tr>
-              <tr>
-                <td>Serbia</td>
-                <td>1983</td>
-              </tr>
-              <tr>
-                <td>Seychelles</td>
-                <td>2015r</td>
-              </tr>
-              <tr>
-                <td>Siberia</td>
-                <td>1986</td>
-              </tr>
-              <tr>
-                <td>Sicily</td>
-                <td>2004</td>
-              </tr>
-              <tr>
-                <td>Singapore</td>
-                <td>1992</td>
-              </tr>
-              <tr>
-                <td>Slovakia</td>
-                <td>1984</td>
-              </tr>
-              <tr>
-                <td>Slovenia</td>
-                <td>1988</td>
-              </tr>
-              <tr>
-                <td>Spain</td>
-                <td>1985</td>
-              </tr>
-              <tr>
-                <td>Spitsbergen</td>
-                <td>2007</td>
-              </tr>
-              <tr>
-                <td>Sri Lanka</td>
-                <td>2009</td>
-              </tr>
-              <tr>
-                <td>Srpska</td>
-                <td>1983</td>
-              </tr>
-              <tr>
-                <td>Sulawesi</td>
-                <td>1995</td>
-              </tr>
-              <tr>
-                <td>Swaziland</td>
-                <td>2003</td>
-              </tr>
-              <tr>
-                <td>Sweden</td>
-                <td>&nbsp;</td>
-              </tr>
-              <tr>
-                <td>Switzerland</td>
-                <td>2003</td>
-              </tr>
-              <tr>
-                <td>Togo</td>
-                <td>2017</td>
-              </tr>
-              <tr>
-                <td>Trans Dniester</td>
-                <td>2005</td>
-              </tr>
-              <tr>
-                <td>Turkey in Asia</td>
-                <td>1984</td>
-              </tr>
-              <tr>
-                <td>Turkey in Europe</td>
-                <td>1984</td>
-              </tr>
-              <tr>
-                <td>Ukraine</td>
-                <td>2000</td>
-              </tr>
-              <tr>
-                <td>United States</td>
-                <td>1990</td>
-              </tr>
-              <tr>
-                <td>Vatican City</td>
-                <td>1997</td>
-              </tr>
-              <tr>
-                <td>Wales</td>
-                <td>1986</td>
-              </tr>
-              <tr>
-                <td>Tanzania</td>
-                <td>1990</td>
-              </tr>
-              <tr>
-                <td>Thailand</td>
-                <td>1992</td>
-              </tr>
-              <tr>
-                <td>Togo</td>
-                <td>2017</td>
-              </tr>
-              <tr>
-                <td>Tunisia</td>
-                <td>1981</td>
-              </tr>
-              <tr>
-                <td>Turkmenistan</td>
-                <td>2015</td>
-              </tr>
-              <tr>
-                <td>Uruguay</td>
-                <td>2007</td>
-              </tr>
-              <tr>
-                <td>Uzbekistan</td>
-                <td>1989</td>
-              </tr>
-              <tr>
-                <td>Venezuela</td>
-                <td>2007</td>
-              </tr>
-              <tr>
-                <td>Yemen, South Rep</td>
-                <td>1990</td>
-              </tr>
-              <tr>
-                <td>Zanzibar</td>
-                <td>1990</td>
-              </tr>
+                    <div class="TCC" style="display: none;" id="OdTccMain">
+                        <table class="table table-bordered table-striped" id="OdTccCount">
+                            <thead>
+                                <tr>
+                                    <th>TCC Country/Territory</th>
+                                    <th>First visited</th>
+                                </tr>
+                            </thead>
+                            <tbody id="OdTcc">
 
-            </tbody>
-          </table>
-        </div>
-
+                            </tbody>
+                        </table>
+                    </div>
 <!-- =============================================================================================
     Here starts Ove's visited UN-countries 
 ================================================================================================ -->
-        <div class="UN" style="display: none;">
-          <h4>Ove's 93 out of 195 visited UN countries including Vatican City and Taiwan R.O.C.</h4>
-          <table class="table table-bordered table-striped">
-            <thead>
-              <tr>
-                <th>UN Country</th>
-                <th>First visited</th>
-                <th>&nbsp;</th>
-              </tr>
-            </thead>
-            <tbody>
+                    <div class="UN" style="display: none;" id="OdUnMain">
+                        <table class="table table-bordered table-striped" id="OdUnCount">
+                            <thead>
+                                <tr>
+                                    <th>UN Country</th>
+                                    <th>First visited</th>
+                                    <th>&nbsp;</th>
+                                </tr>
+                            </thead>
+                            <tbody id="OdUn">
 
-              <tr>
-                <td>Albania</td>
-                <td>2003</td>
-                <td><img src="Flags/alb.png"  class="flag" alt="Albania"/></td>
-              </tr>
-              <tr>
-                <td>Algeria</td>
-                <td>2014</td>
-                <td><img src="Flags/alg.png"  class="flag" alt="Algeria"/></td>
-              </tr>
-              <tr>
-                <td>Argentina</td>
-                <td>2007</td>
-                <td><img src="Flags/arg.png"  class="flag" alt="Argentina"/></td>
-              </tr>
-              <tr>
-                <td>Armenia</td>
-                <td>2006</td>
-                <td><img src="Flags/arm.png"  class="flag" alt="Armenia"/></td>
-              </tr>
-              <tr>
-                <td>Australia</td>
-                <td>1987</td>
-                <td><img src="Flags/aus.png"  class="flag" alt="Australia"/></td>
-              </tr>
-              <tr>
-                <td>Austria</td>
-                <td>1983</td>
-                <td><img src="Flags/aut.png"  class="flag" alt="Austria"/></td>
-              </tr>
-              <tr>
-                <td>Azerbaijan</td>
-                <td>2011</td>
-                <td><img src="Flags/aze.png"  class="flag" alt="Azerbaijan"/></td>
-              </tr>
-              <tr>
-                <td>Belarus</td>
-                <td>1999</td>
-                <td><img src="Flags/blr.png"  class="flag" alt="Belarus"/></td>
-              </tr>
-              <tr>
-                <td>Belgium</td>
-                <td>1985</td>
-                <td><img src="Flags/bel.png"  class="flag" alt="Belgium"/></td>
-              </tr>
-              <tr>
-                <td>Benin</td>
-                <td>2017</td>
-                <td><img src="Flags/ben.png"  class="flag" alt="Benin"/></td>
-              </tr>
-              <tr>
-                <td>Bosnia &amp; Herzegovina</td>
-                <td>1983</td>
-                <td><img src="Flags/bih.png"  class="flag" alt="Bosnia and Herzegovina"/></td>
-              </tr>
-              <tr>
-                <td>Botswana</td>
-                <td>2012</td>
-                <td><img src="Flags/bot.png"  class="flag" alt="Botswana"/></td>
-              </tr>
-              <tr>
-                <td>Brazil</td>
-                <td>2007</td>
-                <td><img src="Flags/bra.png"  class="flag" alt="Brazil"/></td>
-              </tr>
-              <tr>
-                <td>Bulgaria</td>
-                <td>1984</td>
-                <td><img src="Flags/bul.png"  class="flag" alt="Bulgaria"/></td>
-              </tr>
-              <tr>
-                <td>Canada</td>
-                <td>2005</td>
-                <td><img src="Flags/can.png"  class="flag" alt="Canada"/></td>
-              </tr>
-              <tr>
-                <td>Chile</td>
-                <td>2007</td>
-                <td><img src="Flags/chi.png"  class="flag" alt="Chile"/></td>
-              </tr>
-              <tr>
-                <td>China</td>
-                <td>1987</td>
-                <td><img src="Flags/chn.png"  class="flag" alt="China"/></td>
-              </tr>
-              <tr>
-                <td>Costa Rica</td>
-                <td>1996</td>
-                <td><img src="Flags/crc.png"  class="flag" alt="Costa Rica"/></td>
-              </tr>
-              <tr>
-                <td>Croatia</td>
-                <td>1983</td>
-                <td><img src="Flags/cro.png"  class="flag" alt="Croatia"/></td>
-              </tr>
-              <tr>
-                <td>Cyprus</td>
-                <td>1990</td>
-                <td><img src="Flags/cyp.png"  class="flag" alt="Cyprus"/></td>
-              </tr>
-              <tr>
-                <td>Czech Republic</td>
-                <td>1983</td>
-                <td><img src="Flags/cze.png"  class="flag" alt="Czech"/></td>
-              </tr>
-              <tr>
-                <td>Democratic People's Repbublic of Korea</td>
-                <td>2016</td>
-                <td><img src="Flags/prk.png"  class="flag" alt="North Korea"/></td>
-              </tr>
-              <tr>
-                <td>Denmark</td>
-                <td>&nbsp;</td>
-                <td><img src="Flags/den.png"  class="flag" alt="Denmark"/></td>
-              </tr>
-              <tr>
-                <td>Dominican Republic</td>
-                <td>1994</td>
-                <td><img src="Flags/dom.png"  class="flag" alt="Dominican Republic"/></td>
-              </tr>
-              <tr>
-                <td>Ecuador</td>
-                <td>1994</td>
-                <td><img src="Flags/ecu.png"  class="flag" alt="Ecuador"/></td>
-              </tr>
-              <tr>
-                <td>Estonia</td>
-                <td>1992</td>
-                <td><img src="Flags/est.png"  class="flag" alt="Estonia"/></td>
-              </tr>
-              <tr>
-                <td>Ethiopia</td>
-                <td>2010</td>
-                <td><img src="Flags/eth.png"  class="flag" alt="Ethiopia"/></td>
-              </tr>
-              <tr>
-                <td>Finland</td>
-                <td>&nbsp;</td>
-                <td><img src="Flags/fin.png"  class="flag" alt="Finland"/></td>
-              </tr>
-              <tr>
-                <td>France</td>
-                <td>1985</td>
-                <td><img src="Flags/fra.png"  class="flag" alt="France"/></td>
-              </tr>
-              <tr>
-                <td>Gambia (Islamic Republic of the)</td>
-                <td>2010</td>
-                <td><img src="Flags/gam.png"  class="flag" alt="Gambia"/></td>
-              </tr>
-              <tr>
-                <td>Georgia</td>
-                <td>2006</td>
-                <td><img src="Flags/geo.png"  class="flag" alt="Georgia"/></td>
-              </tr>
-              <tr>
-                <td>Germany</td>
-                <td>&nbsp;</td>
-                <td><img src="Flags/ger.png"  class="flag" alt="Germany"/></td>
-              </tr>
-              <tr>
-                <td>Ghana</td>
-                <td>2017</td>
-                <td><img src="Flags/gha.png" class="flag" alt="Ghana"/></td>
-              </tr>
-              <tr>
-                <td>Greece</td>
-                <td>1997</td>
-                <td><img src="Flags/gre.png"  class="flag" alt="Greece"/></td>
-              </tr>
-              <tr>
-                <td>Hungary</td>
-                <td>1983</td>
-                <td><img src="Flags/hun.png"  class="flag" alt="Hungary"/></td>
-              </tr>
-              <tr>
-                <td>India</td>
-                <td>1989</td>
-                <td><img src="Flags/ind.png"  class="flag" alt="India"/></td>
-              </tr>
-              <tr>
-                <td>Indonesia</td>
-                <td>1987</td>
-                <td><img src="Flags/ino.jpg"  width="34" height="22" alt="Indonesia"/></td>
-              </tr>
-              <tr>
-                <td>Iran (Islamic Republic of)</td>
-                <td>2015</td>
-                <td><img src="Flags/irn.png"  class="flag" alt="Iran"/></td>
-              </tr>
-              <tr>
-                <td>Ireland</td>
-                <td>1988</td>
-                <td><img src="Flags/irl.png"  class="flag" alt="Ireland"/></td>
-              </tr>
-              <tr>
-                <td>Italy</td>
-                <td>1997</td>
-                <td><img src="Flags/ita.png"  class="flag" alt="Italy"/></td>
-              </tr>
-              <tr>
-                <td>Jordan</td>
-                <td>2018</td>
-                <td><img src="Flags/jor.png"  class="flag" alt="Jordan"/></td>
-              </tr>
-              <tr>
-                <td>Kazakhstan</td>
-                <td>2013</td>
-                <td><img src="Flags/kaz.png"  class="flag" alt="Kazakhstan"/></td>
-              </tr>
-              <tr>
-                <td>Kenya</td>
-                <td>1990</td>
-                <td><img src="Flags/ken.png"  class="flag" alt="Kenya"/></td>
-              </tr>
-              <tr>
-                <td>Kyrgyzstan</td>
-                <td>2013</td>
-                <td><img src="Flags/kgz.png"  class="flag" alt="Kyrgyzstan"/></td>
-              </tr>
-              <tr>
-                <td>Latvia</td>
-                <td>1992</td>
-                <td><img src="Flags/lva.png"  class="flag" alt="Latvia"/></td>
-              </tr>
-              <tr>
-                <td>Lebanon</td>
-                <td>2009</td>
-                <td><img src="Flags/lib.png"  class="flag" alt="Lebanon"/></td>
-              </tr>
-              <tr>
-                <td>Lithuania</td>
-                <td>1999</td>
-                <td><img src="Flags/ltu.png"  class="flag" alt="Lithuania"/></td>
-              </tr>
-              <tr>
-                <td>Luxembourg</td>
-                <td>1985</td>
-                <td><img src="Flags/lux.png"  class="flag" alt="Luxembourg"/></td>
-              </tr>
-              <tr>
-                <td>Malaysia</td>
-                <td>1992</td>
-                <td><img src="Flags/mas.png"  class="flag" alt="Malaysia"/></td>
-              </tr>
-              <tr>
-                <td>Mexico</td>
-                <td>1996</td>
-                <td><img src="Flags/mex.png"  class="flag" alt="Mexico"/></td>
-              </tr>
-              <tr>
-                <td>Mongolia</td>
-                <td>1987</td>
-                <td><img src="Flags/mng.png"  class="flag" alt="Mongolia"/></td>
-              </tr>
-              <tr>
-                <td>Morocco</td>
-                <td>2004</td>
-                <td><img src="Flags/mar.png"  class="flag" alt="Morocco"/></td>
-              </tr>
-              <tr>
-                <td>Namibia</td>
-                <td>2012</td>
-                <td><img src="Flags/nam.png"  class="flag" alt="Namibia"/></td>
-              </tr>
-              <tr>
-                <td>Nepal</td>
-                <td>1989</td>
-                <td><img src="Flags/nep.png"  class="flag" alt="Nepal"/></td>
-              </tr>
-              <tr>
-                <td>Netherlands</td>
-                <td>1985</td>
-                <td><img src="Flags/ned.png"  class="flag" alt="Netherlands"/></td>
-              </tr>
-              <tr>
-                <td>New Zealand</td>
-                <td>2001</td>
-                <td><img src="Flags/nzl.png"  class="flag" alt="New Zealand"/></td>
-              </tr>
-              <tr>
-                <td>Norway</td>
-                <td>&nbsp;</td>
-                <td><img src="Flags/nor.png"  class="flag" alt="Norway"/></td>
-              </tr>
-              <tr>
-                <td>Oman</td>
-                <td>2006</td>
-                <td><img src="Flags/oma.png"  class="flag" alt="Oman"/></td>
-              </tr>
-              <tr>
-                <td>Panama</td>
-                <td>1996</td>
-                <td><img src="Flags/pan.png"  class="flag" alt="Panama"/></td>
-              </tr>
-              <tr>
-                <td>Poland</td>
-                <td>1984</td>
-                <td><img src="Flags/pol.png"  class="flag" alt="Poland"/></td>
-              </tr>
-              <tr>
-                <td>Portugal</td>
-                <td>1985</td>
-                <td><img src="Flags/por.png"  class="flag" alt="Portugal"/></td>
-              </tr>
-              <tr>
-                <td>Qatar</td>
-                <td>2009</td>
-                <td><img src="Flags/qat.png"  class="flag" alt="Qatar"/></td>
-              </tr>
-              <tr>
-                <td>Republic of Moldova</td>
-                <td>2005</td>
-                <td><img src="Flags/mda.png"  class="flag" alt="Moldova"/></td>
-              </tr>
-              <tr>
-                <td>Romania</td>
-                <td>1984</td>
-                <td><img src="Flags/rou.png"  class="flag" alt="Romania"/></td>
-              </tr>
-              <tr>
-                <td>Russian Federation</td>
-                <td>1986</td>
-                <td><img src="Flags/rus.png"  class="flag" alt="Russia"/></td>
-              </tr>
-              <tr>
-                <td>Senegal</td>
-                <td>2010</td>
-                <td><img src="Flags/sen.png"  class="flag" alt="Senegal"/></td>
-              </tr>
-              <tr>
-                <td>Serbia</td>
-                <td>1983</td>
-                <td><img src="Flags/srb.png"  class="flag" alt="Serbia"/></td>
-              </tr>
-              <tr>
-                <td>Seychelles</td>
-                <td>2015r</td>
-                <td><img src="Flags/sey.png"  class="flag" alt="Seychelles"/></td>
-              </tr>
-              <tr>
-                <td>Singapore</td>
-                <td>1992</td>
-                <td><img src="Flags/sin.png"  class="flag" alt="Singapore"/></td>
-              </tr>
-              <tr>
-                <td>Slovakia</td>
-                <td>1984</td>
-                <td><img src="Flags/svk.png"  class="flag" alt="Slovakia"/></td>
-              </tr>
-              <tr>
-                <td>Slovenia</td>
-                <td>1988</td>
-                <td><img src="Flags/slv.png"  class="flag" alt="Slovenia"/></td>
-              </tr>
-              <tr>
-                <td>South Africa</td>
-                <td>2003</td>
-                <td><img src="Flags/rsa.png"  class="flag" alt="South Africa"/></td>
-              </tr>
-              <tr>
-                <td>Spain</td>
-                <td>1985</td>
-                <td><img src="Flags/esp.png"  class="flag" alt="Spain"/></td>
-              </tr>
-              <tr>
-                <td>Sri Lanka</td>
-                <td>2009</td>
-                <td><img src="Flags/sri.png"  class="flag" alt="Sri Lanka"/></td>
-              </tr>
-              <tr>
-                <td>Swaziland</td>
-                <td>2003</td>
-                <td><img src="Flags/swz.png"  class="flag" alt="Swaziland"/></td>
-              </tr>
-              <tr>
-                <td>Sweden</td>
-                <td>&nbsp;</td>
-                <td><img src="Flags/swe.png"  class="flag" alt="Sweden"/></td>
-              </tr>
-              <tr>
-                <td>Switzerland</td>
-                <td>2003</td>
-                <td><img src="Flags/sui.png"  class="flag" alt="Switzerland"/></td>
-              </tr>
-              <tr>
-                <td>The former Yugoslav Republic of Macedonia</td>
-                <td>2015</td>
-                <td><img src="Flags/mkd.png"  class="flag" alt="Macedonia"/></td>
-              </tr>
-              <tr>
-                <td>Thailand</td>
-                <td>1992</td>
-                <td><img src="Flags/tha.png" class="flag" alt="Thailand"/></td>
-              </tr>
-              <tr>
-                <td>Togo</td>
-                <td>2017</td>
-                <td><img src="Flags/tog.png" class="flag" alt="Togo"/></td>
-              </tr>
-              <tr>
-                <td>Tunisia</td>
-                <td>1981</td>
-                <td><img src="Flags/tun.png" class="flag" alt="Tunisia"/></td>
-              </tr>
-              <tr>
-                <td>Turkey</td>
-                <td>1984</td>
-                <td><img src="Flags/tur.png"  class="flag" alt="Turkey"/></td>
-              </tr>
-              <tr>
-                <td>Turkmenistan</td>
-                <td>2015</td>
-                <td><img src="Flags/tkm.png" class="flag" alt="Turkmenistan"/></td>
-              </tr>
-              <tr>
-                <td>Ukraine</td>
-                <td>2000</td>
-                <td><img src="Flags/ukr.png"  class="flag" alt="Ukraine"/></td>
-              </tr>
-              <tr>
-                <td>United Arab Emirates</td>
-                <td>1992</td>
-                <td><img src="Flags/uae.png"  class="flag" alt="United Arab Emirates"/></td>
-              </tr>
-              <tr>
-                <td>United Kingdom of Great Britain and Northern Ireland</td>
-                <td>1986</td>
-                <td><img src="Flags/United_Kingdom.png"  class="flag" alt="UK"/></td>
-              </tr>
-              <tr>
-                <td>United Republic of Tanzania</td>
-                <td>1990</td>
-                <td><img src="Flags/tan.png"  class="flag" alt="Tanzania"/></td>
-              </tr>
-              <tr>
-                <td>United States of America</td>
-                <td>1990</td>
-                <td><img src="Flags/usa.png"  class="flag" alt="USA"/></td>
-              </tr>
-              <tr>
-                <td>Uruguay</td>
-                <td>2007</td>
-                <td><img src="Flags/uru.png" class="flag" alt="Uruguay"/></td>
-              </tr>
-              <tr>
-                <td>Uzbekistan</td>
-                <td>1989</td>
-                <td><img src="Flags/uzb.png" class="flag" alt="Uzbekistan"/></td>
-              </tr>
-              <tr>
-                <td>Vatican City</td>
-                <td>1997</td>
-                <td><img src="Flags/vt.png"  class="flag" alt="VT"/></td>
-              </tr>
-              <tr>
-                <td>Venezuela Bolivarian Republic of</td>
-                <td>2007</td>
-                <td><img src="Flags/ven.png" class="flag" alt="Venezuela"/></td>
-              </tr>
-              <tr>
-                <td>Yemen</td>
-                <td>1990</td>
-                <td><img src="Flags/yem.png" class="flag" alt="Yemen"/></td>
-              </tr>
-
-            </tbody>
-          </table>
+                            </tbody>
+                        </table>
+                    </div>
+                    <br />
+                    <br />
+                </div>
+            </div>
+            <div class="text-right"><small>Updated 30 Jun 2018</small></div>
         </div>
-
-        <br />
-        <br />
-      </div>
-    </div>
-    <div class="text-right"><small>Updated 13 May 2018</small></div>
-  </div>
 
 <script>
 $(document).ready(function(){
@@ -3291,5 +586,5 @@ $(document).ready(function(){
 });
 </script>
 
-</body>
+    </body>
 </html>
