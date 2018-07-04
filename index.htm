@@ -26,6 +26,9 @@ https://sheets.googleapis.com/v4/spreadsheets/1u3A-e4dxh9KA3POdSCROGdq0RHkzgWHWL
     <body">
 
 <script>
+    const TCC_COUNTRIES = 327;
+    const UN_COUNTRIES = 195;
+
     var baseUrl = 'https://sheets.googleapis.com/v4/spreadsheets';
     var sheetId = '/1u3A-e4dxh9KA3POdSCROGdq0RHkzgWHWLudxmcEEfWM';
     var key = '?key=AIzaSyB-FAQE07lFU8zSBtUr_y0NzchmRTsjzws';
@@ -165,8 +168,8 @@ https://sheets.googleapis.com/v4/spreadsheets/1u3A-e4dxh9KA3POdSCROGdq0RHkzgWHWL
             document.getElementById("LdTcc").appendChild(rowItem);
         }
         var h4Element = document.createElement('h4');
-        var h4Text = "Lasse's " + ldTccCount.toString() + " visited TCC countries and territories out of 325. ";
-        h4Text += "Coverage " + percentage(ldTccCount, 325).toString() + "%";
+        var h4Text = "Lasse's " + ldTccCount.toString() + " visited TCC countries and territories out of " + TCC_COUNTRIES.toString() + ". ";
+        h4Text += "Coverage " + percentage(ldTccCount, TCC_COUNTRIES).toString() + "%";
         h4Element.textContent = h4Text;
         var childNode = document.getElementById("LdTccCount");
         document.getElementById("LdTccMain").insertBefore(h4Element, childNode);
@@ -208,8 +211,8 @@ https://sheets.googleapis.com/v4/spreadsheets/1u3A-e4dxh9KA3POdSCROGdq0RHkzgWHWL
             document.getElementById("LdUn").appendChild(rowItem);
         }
         var h4Element = document.createElement('h4');
-        var h4Text = "Lasse's " + ldUnCount.toString() + " out of 195 visited UN countries including Vatican City and Taiwan R.O.C. ";
-        h4Text += "Coverage " + percentage(ldUnCount, 195).toString() + "%";
+        var h4Text = "Lasse's " + ldUnCount.toString() + " out of " + UN_COUNTRIES.toString() + " visited UN countries including Vatican City and Taiwan R.O.C. ";
+        h4Text += "Coverage " + percentage(ldUnCount, UN_COUNTRIES).toString() + "%";
         h4Element.textContent = h4Text;
         var childNode = document.getElementById("LdUnCount");
         document.getElementById("LdUnMain").insertBefore(h4Element, childNode);
@@ -246,8 +249,8 @@ https://sheets.googleapis.com/v4/spreadsheets/1u3A-e4dxh9KA3POdSCROGdq0RHkzgWHWL
             document.getElementById("CeTcc").appendChild(rowItem);
         }
         var h4Element = document.createElement('h4');
-        var h4Text = "Crillo's " + ceTccCount.toString() + " visited TCC countries and territories out of 325";
-        h4Text += "Coverage " + percentage(ceTccCount, 325).toString() + "%";
+        var h4Text = "Crillo's " + ceTccCount.toString() + " visited TCC countries and territories out of " + TCC_COUNTRIES.toString() + ". ";
+        h4Text += "Coverage " + percentage(ceTccCount, TCC_COUNTRIES).toString() + "%";
         h4Element.textContent = h4Text;
         var childNode = document.getElementById("CeTccCount");
         document.getElementById("CeTccMain").insertBefore(h4Element, childNode);
@@ -289,8 +292,8 @@ https://sheets.googleapis.com/v4/spreadsheets/1u3A-e4dxh9KA3POdSCROGdq0RHkzgWHWL
             document.getElementById("CeUn").appendChild(rowItem);
         }
         var h4Element = document.createElement('h4');
-        var h4Text = "Crillo's " + ceUnCount.toString() + " out of 195 visited UN countries including Vatican City and Taiwan R.O.C.";
-        h4Text += "Coverage " + percentage(ceUnCount, 195).toString() + "%";
+        var h4Text = "Crillo's " + ceUnCount.toString() + " out of " + UN_COUNTRIES.toString() + " visited UN countries including Vatican City and Taiwan R.O.C. ";
+        h4Text += "Coverage " + percentage(ceUnCount, UN_COUNTRIES).toString() + "%";
         h4Element.textContent = h4Text;
         var childNode = document.getElementById("CeUnCount");
         document.getElementById("CeUnMain").insertBefore(h4Element, childNode);
@@ -327,8 +330,8 @@ https://sheets.googleapis.com/v4/spreadsheets/1u3A-e4dxh9KA3POdSCROGdq0RHkzgWHWL
             document.getElementById("OdTcc").appendChild(rowItem);
         }
         var h4Element = document.createElement('h4');
-        var h4Text = "Ove's " + odTccCount.toString() + " visited TCC countries and territories out of 325. ";
-        h4Text += "Coverage " + percentage(odTccCount, 325).toString() + "%";
+        var h4Text = "Ove's " + odTccCount.toString() + " visited TCC countries and territories out of " + TCC_COUNTRIES.toString() + ". ";
+        h4Text += "Coverage " + percentage(odTccCount, TCC_COUNTRIES).toString() + "%";
         h4Element.textContent = h4Text;
         var childNode = document.getElementById("OdTccCount");
         document.getElementById("OdTccMain").insertBefore(h4Element, childNode);
@@ -370,8 +373,8 @@ https://sheets.googleapis.com/v4/spreadsheets/1u3A-e4dxh9KA3POdSCROGdq0RHkzgWHWL
             document.getElementById("OdUn").appendChild(rowItem);
         }
         var h4Element = document.createElement('h4');
-        var h4Text = "Ove's " + odUnCount.toString() + " out of 195 visited UN countries including Vatican City and Taiwan R.O.C. ";
-        h4Text += "Coverage " + percentage(odUnCount, 195).toString() + "%";
+        var h4Text = "Ove's " + odUnCount.toString() + " out of " + UN_COUNTRIES.toString() + " visited UN countries including Vatican City and Taiwan R.O.C. ";
+        h4Text += "Coverage " + percentage(odUnCount, UN_COUNTRIES).toString() + "%";
         h4Element.textContent = h4Text;
         var childNode = document.getElementById("OdUnCount");
         document.getElementById("OdUnMain").insertBefore(h4Element, childNode);
